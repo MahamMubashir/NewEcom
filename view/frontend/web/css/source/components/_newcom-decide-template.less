@@ -1,0 +1,180 @@
+@import '../core/_variables.less';
+@import '../_typography.less';
+
+.NewEcomAi {
+    &__popup-content {
+        &__response {
+            .newcom-search-history {
+                padding: 0 20px 20px;
+            }
+
+            .newcom-search-query {
+                margin-bottom: 10px;
+                text-align: right;
+
+                span {
+                    background-color: @decide-search-bg-color;
+                    border-radius: 10px;
+                    color: @white;
+                    display: inline-block;
+                    margin-left: auto;
+                    max-width: 90%;
+                    padding: 10px;
+                    text-align: right;
+                }
+            }
+
+            .newcom-query-response {
+                border-radius: 10px;
+                display: block;
+                font-size: 15px;
+                max-width: 90%;
+                margin: 0 auto 10px;
+                padding: 10px;
+                text-align: left;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+
+                .lists {
+                    .item {
+                        margin-bottom: 0;
+                    }
+
+                    .link {
+                        color: @decide-search-link-color;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .newcom-icons-container {
+                text-align: left;
+            }
+
+            .newcom-like-icon,
+            .newcom-dislike-icon {
+                background: transparent;
+                border-radius: 10px;
+                border: 0;
+                cursor: pointer;
+                display: inline;
+                margin-top: 10px;
+                padding: 10px;
+
+                &:hover {
+                    background: @decide-feedback-icon-hover-color;
+                }
+            }
+
+            .newcom-feedback-text {
+                margin-top: 14px;
+                padding: 10px;
+                background-color: @feedback-bg-color;
+            }
+        }
+    }
+
+    &__product-items {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+
+        &__item {
+            margin-bottom: 0;
+        }
+
+        &__link {
+            color: @decide-search-link-color;
+            text-decoration: underline;
+        }
+
+        .NewEcomAi {
+            &__product-box {
+                &__image {
+                    min-height: unset;
+                }
+            }
+        }
+    }
+
+    &__load-button {
+        max-width: 150px;
+        margin: 0 auto;
+        color: @white;
+        background: @decide-load-more-button-bg-color;
+        border-radius: 0;
+        outline: none;
+        border: 0;
+
+        &:hover {
+            color: @white;
+            background: @decide-load-more-button-bg-color;
+            border-radius: 0;
+            outline: none;
+            border: 0;
+        }
+    }
+}
+
+#loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+//
+//  Desktop (style-l.css)
+//  _____________________________________________
+
+@media (min-width: @screen__s) {
+    .NewEcomAi {
+        &__popup-content {
+            &__response {
+                .newcom-query-response {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .col-md-12 {
+        width: 100%;
+        float: left;
+    }
+    .col-md-6 {
+        width: 50%;
+        float: left;
+    }
+    .col-md-4 {
+        width: 33.33%;
+        float: left;
+    }
+    .col-md-3 {
+        width: 25%;
+        float: left;
+    }
+    .col-md-2 {
+        width: 20%;
+        float: left;
+    }
+    .col-md-1 {
+        width: 16.66%;
+        float: left;
+    }
+}

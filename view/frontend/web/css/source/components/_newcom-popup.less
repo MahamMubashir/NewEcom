@@ -1,0 +1,687 @@
+@import '../core/_variables.less';
+@import '../_typography.less';
+
+.NewEcomAi {
+    &__popup {
+        background-color: @popup-background-color;
+        display: none;
+        height: 100%;
+        left: 0;
+        overflow: auto;
+        padding-top: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+    }
+
+    &__popup-content {
+        background-color: @white;
+        border-radius: 10px;
+        height: 100%;
+        margin: auto;
+        max-height: initial;
+        max-width: 100%;
+        overflow: auto;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        &__column {
+            flex: 1;
+
+            &.image {
+                .NewEcomAi {
+                    &__popup-content {
+                        &__image-container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.newcom-full-width {
+            width: 100%;
+            display: block;
+
+            .NewEcomAi {
+                &__popup-content {
+                    &__column {
+                        flex: 1;
+
+                        &.image {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__reset {
+            border: 0;
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            &__svg {
+                box-sizing: border-box;
+                cursor: pointer;
+                height: 38px;
+                padding: 9px;
+                width: 50px;
+            }
+
+            &:hover {
+                background-color: @reset-button-hover-color;
+            }
+        }
+
+        &__upload {
+            border-left: 1px solid;
+            border-color: @popup-input-border-color;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            height: 40px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50px;
+        }
+
+        &__svg {
+            height: 41px;
+            z-index: 0;
+        }
+
+        &__file {
+            height: 43px;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 35px;
+            z-index: 1;
+        }
+
+        &__inner {
+            margin: 20px auto;
+            max-width: 85%;
+            padding: 10px;
+
+            &.newcom-post-search {
+                max-width: 95%;
+
+                .NewEcomAi {
+                    &__popup-content {
+                        &__upload {
+                            display: none;
+                        }
+
+                        &__reset {
+                            display: flex;
+                        }
+
+                        &__examples {
+                            display: none;
+                        }
+
+                        &__heading {
+                            text-align: left;
+                        }
+                    }
+
+                    &__product-box {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        &__heading {
+            color: @color-foreground;
+            font-family: @font-heading-family;
+            font-size: calc(@font-heading-scale * 2rem);
+            font-weight: @font-weight-bold;
+            letter-spacing: calc(@font-heading-scale * .06rem);
+            margin-bottom: 19px;
+            margin-top: 0;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        &__input {
+            border-image: initial;
+            border-radius: 0;
+            border: 1px solid;
+            border-color: @popup-example-border-color;
+            box-sizing: border-box;
+            font-size: 16px;
+            max-height: 200px;
+            padding: 9px 50px 9px 9px;
+            resize: vertical;
+            width: 100%;
+
+            &:focus,
+            &:active,
+            &:hover,
+            &:focus-visible {
+                box-shadow: none !important;
+                outline: none;
+            }
+        }
+
+        &__search-box {
+            margin-bottom: 10px;
+            position: relative;
+            display: block;
+        }
+
+        &__examples {
+            display: block;
+            text-align: left;
+
+            &__query {
+                border: 1px solid @popup-example-border-color;
+                cursor: pointer;
+                display: inline-block;
+                font-size: 12px;
+                margin-bottom: 5px;
+                padding: 5px;
+                text-align: left;
+
+                &:hover {
+                    background-color: @popup-examples-hover-background-color;
+                }
+            }
+        }
+    }
+
+    &__close {
+        color: @popup-close-button-color;
+        cursor: pointer;
+        font-size: 28px;
+        font-weight: @font-weight-bold;
+        position: absolute;
+        right: 12px;
+        top: -7px;
+        z-index: 1;
+    }
+
+    &__close {
+        &:hover,
+        &:focus {
+            color: @black;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
+    &.newcomProductGrid {
+        .NewEcomAi {
+            &__close {
+                display: none;
+            }
+
+
+            &__popup {
+                background-color: transparent;
+                padding-top: 0;
+                position: relative;
+                overflow: visible;
+            }
+
+            &__popup-content {
+                border-radius: 0;
+                border: 0;
+                max-height: 100%;
+                max-width: 100%;
+                overflow: visible;
+                width: 100%;
+                display: block;
+
+                &__column {
+                    flex: 1;
+
+                    &.image {
+                        display: none;
+                    }
+                }
+
+                &__heading {
+                    font-size: 20px;
+                    font-weight: @font-weight-bold;
+                    margin-bottom: 16px;
+                    margin-top: 0;
+                    text-align: left;
+                }
+
+                &__search-box {
+                    align-items: flex-start;
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                    position: relative;
+                }
+
+                &__upload {
+                    border-left: 1px solid;
+                    border-color: @popup-example-border-color;
+                    display: block;
+                    height: 41px;
+                    position: absolute;
+                    right: 0;
+                    text-align: center;
+                    top: 0;
+                    width: 50px;
+                }
+
+                &__reset {
+                    &__svg {
+                        height: 41px;
+                    }
+                }
+
+                &__inner {
+                    max-width: 100%;
+                    padding: 10px 20px;
+
+                    &.newcom-post-search {
+                        .NewEcomAi {
+                            &__popup-content {
+                                &__upload {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &__file {
+                    border-bottom: 1px solid;
+                    border-top: 1px solid;
+                    cursor: pointer;
+                    height: 41px;
+                    opacity: 0;
+                    position: relative;
+                    width: 60px;
+                }
+
+                &__svg {
+                    height: 41px;
+                }
+
+                &__input {
+                    border-radius: 0;
+                    box-sizing: border-box;
+                    height: 43px;
+                    max-height: 80px;
+                    padding: 8px 50px 8px 10px;
+                    resize: vertical;
+                    width: 100%;
+                }
+
+                &__button {
+                    border-radius: 0;
+                    border: 0;
+                    height: 43px;
+                    margin-bottom: 0;
+                    padding: 13px 10px;
+                    width: 100%;
+                }
+
+                &__examples {
+                    text-align: left;
+
+                    &__query {
+                        border: 1px solid @popup-example-border-color;
+                        cursor: pointer;
+                        display: inline-block;
+                        font-size: 12px;
+                        margin-bottom: 5px;
+                        padding: 5px;
+                        text-align: left;
+
+                        &:hover {
+                            background-color: @popup-examples-hover-background-color;
+                        }
+                    }
+                }
+            }
+
+            &__product-box {
+                &__add-cart {
+                    .NewEcomAi {
+                        &__popup-content {
+                            &__button {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.newcomLeftSide {
+        .NewEcomAi {
+            &__left {
+                border-bottom-right-radius: 10px;
+                border-top-right-radius: 10px;
+                left: 0;
+
+                &__desc {
+                    display: none;
+                    padding: 10px;
+                }
+
+                &__text {
+                    border-left: 1px solid;
+                    overflow: hidden;
+                    padding: 10px;
+                    position: relative;
+                    transition: all 0.2s ease;
+                    writing-mode: vertical-lr;
+                }
+
+                &:hover {
+                    .NewEcomAi {
+                        &__left {
+                            &__desc {
+                                display: block;
+                                opacity: 1;
+                                transform: translateY(0);
+                                transition: opacity 0.2s ease, transform 0.2s ease;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.newSmartShopDiscover,
+    &.newcomPopup,
+    &.newSmartShopDecide {
+        .NewEcomAi {
+            &__btn {
+                display: none;
+            }
+        }
+    }
+
+    &.newcomRightSide {
+        .NewEcomAi {
+            &__right {
+                display: flex;
+            }
+        }
+    }
+
+    &.newcomLeftSide {
+        .NewEcomAi {
+            &__left {
+                display: flex;
+            }
+        }
+    }
+
+    &.newcomRightSide {
+        .NewEcomAi {
+            &__right {
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px;
+                right: 0;
+
+                &__desc {
+                    display: none;
+                    padding: 10px;
+                }
+
+                &__text {
+                    border-left: 1px solid;
+                    overflow: hidden;
+                    padding: 10px;
+                    position: relative;
+                    transform: rotate(180deg);
+                    transition: all 0.2s ease;
+                    writing-mode: vertical-lr;
+                }
+
+                &:hover {
+                    .NewEcomAi {
+                        &__right {
+                            &__desc {
+                                display: block;
+                                opacity: 1;
+                                transform: translateY(0);
+                                transition: opacity 0.2s ease, transform 0.2s ease;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__btn {
+        align-items: center;
+        color: @white;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        max-width: 30%;
+        position: fixed;
+        top: 50%;
+        z-index: 4;
+        font-size: 16px;
+        background-color: @sticky-btn-bg-color;
+    }
+
+    &__product-box {
+        display: none;
+    }
+
+    &.newSmartShopDecide {
+        .NewEcomAi {
+            &__popup-content {
+                background-color: @decide-popup-bg-color;
+                border-radius: 20px;
+
+                &__inner {
+                    margin: 20px auto 10px;
+                    padding-bottom: 0;
+                }
+
+                &__input {
+                    padding-right: 9px;
+                }
+            }
+        }
+
+        &.newcomProductGrid {
+            margin-top: 30px;
+
+            .NewEcomAi {
+                &__popup-content {
+                    &__inner {
+                        margin: 0 auto;
+                        padding-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile (style-l.css)
+//  _____________________________________________
+
+
+//
+//  Desktop (style-l.css)
+//  _____________________________________________
+@media (min-width: @screen__s) {
+    .NewEcomAi {
+        &__popup-content {
+            height: auto;
+            max-height: 80vh;
+            overflow: hidden;
+            width: 60%;
+
+
+            &__input {
+                padding-right: 9px;
+            }
+
+            &.js-newcom-popup-content {
+                &.show-scrollbar {
+                    overflow-y: auto;
+                }
+            }
+
+            &.newcom-full-width {
+                width: 95%;
+            }
+
+            &__search-box {
+                position: unset;
+                display: flex;
+            }
+
+            &__upload {
+                border-bottom: 1px solid;
+                border-left: none;
+                border-top: 1px solid;
+                border-color: @popup-input-border-color;
+                height: 41px;
+                position: relative;
+                width: 60px;
+            }
+
+            &__heading {
+                font-size: calc(@font-heading-scale * 2.4rem);
+            }
+
+            &__svg {
+                height: 41px;
+            }
+
+            &__inner {
+                padding: 0;
+            }
+
+            &__reset {
+                align-items: center;
+                border-image: initial;
+                border-left: none;
+                border: 1px solid;
+                border-left: 0;
+                border-color: @popup-input-border-color;
+                justify-content: center;
+                position: unset;
+            }
+        }
+
+        &.newcomProductGrid {
+            .NewEcomAi {
+                &__popup-content {
+                    &__button {
+                        width: 10%;
+                    }
+
+                    &__svg {
+                        height: auto;
+                    }
+
+                    &__upload {
+                        border-bottom: 1px solid;
+                        border-left: none;
+                        border-top: 1px solid;
+                        cursor: pointer;
+                        height: 41px;
+                        position: relative;
+                        width: 60px;
+                        border-color: @popup-input-border-color;
+                    }
+
+                    &__input {
+                        min-height: 41px;
+                        padding-right: 0px;
+                        width: 100%;
+                    }
+
+                    &__search-box {
+                        align-items: flex-start;
+                        flex-direction: row;
+                    }
+                }
+            }
+        }
+
+        &.newSmartShopDecide {
+            .NewEcomAi {
+                &__popup-content {
+                    &__inner {
+                        margin: 20px auto;
+                        padding-bottom: 10px;
+                    }
+                }
+            }
+
+            &.newcomProductGrid {
+                .NewEcomAi {
+                    &__popup-content {
+                        &__inner {
+                            margin: 0 auto 20px;
+                        }
+
+                        &__search-box {
+                            flex-direction: column;
+                        }
+
+                        &__button {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: @screen__m) {
+    .NewEcomAi {
+        &__popup {
+            padding-top: 140px;
+            z-index: 3;
+
+            &-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                &__column {
+                    flex: 1;
+                }
+
+                #NewEcomAi-search-result {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}

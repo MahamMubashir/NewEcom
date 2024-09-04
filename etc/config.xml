@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <shop_smart>
+            <general_account_configuration>
+                    <enable>0</enable>
+                    <shop_smart_mode>0</shop_smart_mode>
+                    <user_id>662fae5277c08cce935f1aaa</user_id>
+                    <user_name>NewEcom-43987766-aadb-407e-a7d5-b3a491046560</user_name>
+                    <user_password>0.uq05bxxmgx</user_password>
+                    <ab_testing>0</ab_testing>
+            </general_account_configuration>
+            <general_catalog_sync>
+                <catalog_sync_button>0</catalog_sync_button>
+            </general_catalog_sync>
+            <general_newecomai_widgets>
+                <shop_smart_discover_widget>0</shop_smart_discover_widget>
+                <shop_smart_decide_widget>0</shop_smart_decide_widget>
+            </general_newecomai_widgets>
+        </shop_smart>
+    </default>
+</config>

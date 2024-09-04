@@ -1,0 +1,59 @@
+@import "../core/_variables.less";
+
+.NewEcomAi {
+    &__popup-content {
+        &__button {
+            display: block;
+            margin: auto;
+            background-color: @popup-button-bg-color;
+            border: 0;
+            border-radius: 0;
+            box-shadow: @popup-btn-box-shadow;
+            box-sizing: border-box;
+            color: @popup-button-color;
+            font-family: @font-body-family;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: @font-weight-regular;
+            line-height: 1.15385;
+            outline: none;
+            padding: 12px 0.8em;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            white-space: nowrap;
+            min-width: 100px;
+            width: 100%;
+            margin: 0;
+            margin-top: 5px;
+            text-wrap: wrap;
+
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: @popup-button-bg-color;
+                color: @white;
+                border: 0;
+            }
+        }
+    }
+}
+
+//
+//  Desktop (style-l.css)
+//  _____________________________________________
+
+@media (min-width: @screen__s) {
+    .NewEcomAi {
+        &__popup-content {
+            &__button {
+                width: 10%;
+                margin: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,86 @@
+
+
+//  Font Family
+@font-heading-family: 'Assistant', sans-serif;
+@font-body-family: 'Assistant', sans-serif;
+
+
+
+//  Colors
+@white: #ffffff;
+@black: #000000;
+@color-foreground: rgb(18, 18, 18);
+@color-background: rgb(255, 255, 255);
+@body-color: rgba(18, 18, 18, 0.75);
+
+//  Font weights
+
+@font-weight-light: 300;
+@font-weight-regular: 400;
+@font-weight-medium: 500;
+@font-weight-semi-bold: 600;
+@font-weight-bold: 700;
+@font-weight-extra-bold: 900;
+
+//  Font style
+@font-style: normal;
+
+//  Scaling
+@font-heading-scale: 1.0;
+@font-body-scale: 1.0;
+
+//  Popup Colors
+@popup-background-color: rgba(0, 0, 0, 0.4);
+@popup-button-bg-color: #3b0c79;
+@popup-example-border-color: #ddd;
+@popup-input-border-color: #ddd;
+@popup-close-button-color: #aaa;
+@popup-button-color: #fff;
+@popup-examples-hover-background-color: #f6f6f6;
+@popup-btn-box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+@sticky-btn-bg-color: #3b0c79;
+@reset-button-hover-color: #e4e4e4;
+@product-variant-border-color: #d9d9d9;
+@question-slide-bg-color: #f6f6f6;
+@question-current-slide-bg-color:#ede2fd;
+@feedback-bg-color: #ede2fd;
+@product-lists-bg-color: #ede2fd;
+@product-lists-slick-arrow-hover-bg-color: rgba(255, 255, 255, 0.4);
+@product-price-color: #ff0000;
+@decide-popup-bg-color: #ede2fd;
+@decide-search-bg-color: #f5c3b3;
+@decide-search-link-color: #0000EE;
+@decide-feedback-icon-hover-color: #eee;
+@decide-search-link-color: #3B0C79;
+@decide-load-more-button-bg-color: #3b0c79;
+
+//  Media screen variables
+
+@screen__xxs: 320px;
+@screen__xs: 480px;
+@screen__s: 640px;
+@screen__m: 768px;
+@screen__l: 992px;
+@screen__xl: 1200px;
+@screen__xxl: 1360px;
+
+//  Global Style
+body {
+    color: @body-color;
+    background-color: @color-background;
+    letter-spacing: 0.06rem;
+    line-height: calc(1 + 0.8 / @font-body-scale);
+    font-family: @font-body-family;
+    font-style: @font-style;
+    font-weight: @font-weight-regular;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: @font-body-family;
+    font-style: @font-style;
+    line-height: calc(1 + .3/max(1,@font-heading-scale));
+    font-weight: @font-weight-regular;
+    letter-spacing: calc(@font-heading-scale * .06rem);
+    color: @color-foreground;
+    word-break: break-word;
+}

@@ -1,0 +1,359 @@
+@import "../core/_variables.less";
+@import "../_typography.less";
+
+.NewEcomAi {
+    &__popup-content {
+        .NewEcomAi {
+            &__product-box {
+                &__image {
+                    img {
+                        cursor: pointer;
+                        height: auto;
+                        width: 100%;
+                    }
+
+                    margin-right: 0;
+                    min-height: 260px;
+                }
+
+                &__details {
+                    background-color: @white;
+                    border-radius: 10px;
+                }
+
+                &__title {
+                    font-size: 16px;
+                    font-weight: @font-weight-bold;
+                    padding: 10px 10px 0 10px;
+
+                    .title {
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        cursor: pointer;
+                        display: -webkit-box;
+                        line-height: 19px;
+                        margin: 0;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        min-height: 40px;
+
+                        a {
+                            color: @black;
+                            font-size: 16px;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                &__price {
+                    color: @product-price-color;
+                    font-size: 15px;
+                    font-weight: @font-weight-bold;
+                    padding: 0 10px;
+                }
+
+                &__variant {
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 0 10px;
+
+                    &__type {
+                        margin-bottom: 8px;
+                        width: 100%;
+
+                        label {
+                            display: block;
+                            font-size: 12px;
+                            font-weight: @font-weight-bold;
+                            margin-bottom: 6px;
+                        }
+
+                        select {
+                            border-radius: 4px;
+                            border: 1px solid @product-variant-border-color;
+                            margin-right: 10px;
+                            padding: 6px 6px;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                &__quantity {
+                    display: none;
+                    width: 10%;
+
+                    .item-qty {
+                        padding: 5px;
+                        text-align: center;
+                        width: 100%;
+                    }
+                }
+
+                &__add-cart {
+                    padding: 10px;
+
+                    button {
+                        width: 100%;
+                    }
+                }
+
+                &__stackedQuestion {
+                    margin-top: 25px;
+                    text-align: center;
+
+                    .slick-slide {
+                        background-color: @question-slide-bg-color;
+                        border-top-left-radius: 8px;
+                        border-top-right-radius: 8px;
+                        color: @black;
+                        margin-right: 5px;
+                        padding: 10px 50px 10px 40px;
+                        position: relative;
+                        width: 85%;
+                        width: max-content;
+
+                        &.slick-current {
+                            background-color: @question-current-slide-bg-color;
+                        }
+                    }
+
+                    .slick-list {
+                        padding: 0 10% 0 10%;
+                    }
+
+                    .slick-track {
+                        align-items: stretch;
+                        display: flex;
+                    }
+
+                    .question-item  {
+                        align-items: center;
+                        display: flex;
+                        flex: 1;
+                        height: auto;
+                    }
+                }
+
+                &__search-query {
+                    cursor: pointer;
+                    display: inline-block;
+                    font-size: 15px;
+                    font-weight: @font-weight-bold;
+                    line-height: 20px;
+                    width: 100%;
+                    word-wrap: break-word;
+                }
+
+                &__product-count {
+                    background-color: @white;
+                    border-radius: 50%;
+                    font-size: 12px;
+                    height: 25px;
+                    padding: 5px;
+                    position: absolute;
+                    right: 3px;
+                    text-align: center;
+                    top: 3px;
+                    width: 25px;
+                }
+
+                &__feedback {
+                    background-color: @feedback-bg-color;
+                    font-size: 15px;
+                    padding: 10px;
+                    text-align: left;
+                }
+
+                &__productList {
+                    background-color: @product-lists-bg-color;
+                    margin-bottom: 10px;
+                    padding: 10px 10px 20px;
+
+                    .slick-track {
+                        margin: 0;
+                        display: flex;
+                        align-items: stretch;
+
+                        .slick-slide {
+                            flex: 1;
+                            margin: 0 5px;
+
+                            &.NewEcomAi {
+                                &-Placeholder {
+                                    height: auto;
+
+                                    .inner {
+                                        height: 100%;
+                                        background-color: @white;
+                                        padding: 0 10px;
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                        flex-direction: column;
+                                        border-radius: 10px;
+
+                                        &.is-loading {
+                                            &:before {
+                                                content: "";
+                                                display: block;
+                                                width: 100%;
+                                                height: 100%;
+                                                background: #e0e0e0;
+                                                animation: pulse 1.5s infinite;
+                                                margin: 10px auto;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .slick-arrow {
+                        background-color: transparent;
+                        border: 0;
+                        cursor: pointer;
+                        font-size: 0;
+                        height: 100%;
+                        position: absolute;
+                        top: 50%;
+                        width: 40px;
+                        z-index: 12;
+                        transform: translateY(-50%);
+
+                        &:hover {
+                            background-color: @product-lists-slick-arrow-hover-bg-color;
+                        }
+                    }
+
+                    .slick-prev {
+                        left: 0;
+
+                        &::before {
+                            content: '';
+                            border-bottom: 10px solid transparent;
+                            border-right: 15px solid @black;
+                            border-top: 10px solid transparent;
+                            display: inline-block;
+                            height: 0;
+                            margin-right: 5px;
+                            width: 0;
+                        }
+                    }
+
+                    .slick-next {
+                        right: 0;
+
+                        &::before {
+                            content: '';
+                            border-bottom: 10px solid transparent;
+                            border-left: 15px solid @black;
+                            border-top: 10px solid transparent;
+                            display: inline-block;
+                            height: 0;
+                            margin-left: 5px;
+                            width: 0;
+                        }
+                    }
+                }
+
+                .slick-disabled {
+                    display: none !important;
+                }
+            }
+        }
+        &__image-preview {
+            position: relative;
+
+            &__img {
+                width: 64px;
+                margin-right: auto;
+                display: block;
+            }
+
+            #NewEcomAi-remove-preview {
+                position: absolute;
+                top: -4px;
+                left: -5px;
+                background-color: #fff;
+                cursor: pointer;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                padding: 0;
+                font-size: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+            &.NewEcomAi-hide-image {
+                .NewEcomAi {
+                    &__popup-content {
+                        &__image-preview {
+                            &__img {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                #NewEcomAi-remove-preview {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop (style-l.css)
+//  _____________________________________________
+@media (min-width: @screen__s) {
+    .NewEcomAi {
+      &__popup-content {
+            .NewEcomAi {
+                &__product-box {
+                    &__product-count {
+                        font-size: 15px;
+                        height: 30px;
+                        right: 12px;
+                        top: 4px;
+                        width: 30px;
+                    }
+
+                    &__price,
+                    &__feedback,
+                    &__search-query {
+                        font-size: 16px;
+                    }
+
+                    &__stackedQuestion {
+                        margin-top: 45px;
+
+                        .slick-list {
+                            padding: 0 5% 0 5%;
+                        }
+
+                        .question-item  {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #f3f3f3;
+    }
+    50% {
+        background-color: #e0e0e0;
+    }
+    100% {
+        background-color: #f3f3f3;
+    }
+}

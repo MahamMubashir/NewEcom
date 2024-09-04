@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+
+    <group id="newecomai_widgets" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+           showInStore="1">
+        <label>NewEcomAI Widgets</label>
+        <depends>
+            <field id="shop_smart/general/account_configuration/enable">1</field>
+        </depends>
+        <field id="shop_smart_discover_widget" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Discover Widget</label>
+            <depends>
+                <field id="shop_smart/general/account_configuration/enable">1</field>
+            </depends>
+            <source_model>NewEcom\ShopSmart\Model\Config\Source\Status</source_model>
+            <config_path>shop_smart/general_newecomai_widgets/shop_smart_discover_widget</config_path>
+        </field>
+        <field id="shop_smart_decide_widget" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Decide Widget</label>
+            <depends>
+                <field id="shop_smart/general/account_configuration/enable">1</field>
+            </depends>
+            <source_model>NewEcom\ShopSmart\Model\Config\Source\Status</source_model>
+            <config_path>shop_smart/general_newecomai_widgets/shop_smart_decide_widget</config_path>
+        </field>
+
+    </group>
+</include>

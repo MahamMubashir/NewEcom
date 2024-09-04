@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="new_ecom_ai" translate="label" sortOrder="0">
+            <label>NewEcomAi</label>
+        </tab>
+        <section id="shop_smart" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Shop Smart</label>
+            <tab>new_ecom_ai</tab>
+            <resource>NewEcom_ShopSmart::config_newecomai</resource>
+
+            <group id="general" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>NewEcomAi API Configuration</label>
+                <include path="NewEcom_ShopSmart::system/account_configuration.xml"/>
+                <include path="NewEcom_ShopSmart::system/product_attribute_mapping.xml"/>
+                <include path="NewEcom_ShopSmart::system/newecomai_widgets.xml"/>
+            </group>
+        </section>
+    </system>
+</config>

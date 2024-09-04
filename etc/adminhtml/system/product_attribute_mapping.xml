@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+
+    <group id="product_attribute_mapping" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+           showInStore="1">
+        <label>Product Attribute Mapping</label>
+        <depends>
+            <field id="shop_smart/general/account_configuration/enable">1</field>
+        </depends>
+        <field id="mapping" translate="label" type="multiselect" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Select Product Attribute</label>
+            <depends>
+                <field id="shop_smart/general/account_configuration/enable">1</field>
+            </depends>
+            <source_model>NewEcom\ShopSmart\Model\Adminhtml\Config\Source\ProductAttributeSource</source_model>
+        </field>
+
+    </group>
+</include>

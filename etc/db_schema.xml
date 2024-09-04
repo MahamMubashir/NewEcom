@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote_item" resource="checkout" comment="Sales Quote Item Table">
+        <column xsi:type="int" name="add_to_cart_from_discover" unsigned="false" nullable="true" identity="false"
+                comment="Add to cart from Discover"/>
+        <column xsi:type="int" name="add_to_cart_from_decide" unsigned="false" nullable="true" identity="false"
+                comment="Add to cart from Decide"/>
+    </table>
+    <table name="sales_order_item" resource="checkout" comment="Sales Order Item Table">
+        <column xsi:type="int" name="discover_search_product" unsigned="false" nullable="true" identity="false"
+                comment="Order Item from Discover"/>
+        <column xsi:type="int" name="decide_search_product" unsigned="false" nullable="true" identity="false"
+                comment="Order Item from Decide"/>
+    </table>
+</schema>
