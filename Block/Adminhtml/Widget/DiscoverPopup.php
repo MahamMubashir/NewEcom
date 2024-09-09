@@ -16,9 +16,9 @@ use NewEcom\ShopSmart\Model\Config as ConfigHelper;
  */
 class DiscoverPopup extends Template implements BlockInterface
 {
-    protected const DISCOVER_SEARCH_CONTROLLER_PATH = "newecomai/recommendations/discoversearch";
-    protected const PRODUCT_ADD_TO_CART_PATH = "newecomai/recommendations/addtocart";
-    protected const PRODUCT_REMOVE_FROM_CART_PATH = "newecomai/recommendations/productremovefromcart";
+    protected const DISCOVER_SEARCH_CONTROLLER_PATH = "newecom/recommendations/discoversearch";
+    protected const PRODUCT_ADD_TO_CART_PATH = "newecom/recommendations/addtocart";
+    protected const PRODUCT_REMOVE_FROM_CART_PATH = "newecom/recommendations/productremovefromcart";
     protected const DISCOVER_UPLOAD_IMAGE_CONTROLLER_PATH = "newecomai/recommendations/discoveruploadimage";
     protected const POPUP_CLASS = 'newcomPopup';
     protected const LEFT_SIDE_CLASS = 'newcomLeftSide';

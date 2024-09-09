@@ -1,0 +1,195 @@
+<?php
+
+use NewEcom\ShopSmart\Block\Adminhtml\Widget\DiscoverPopup;
+use Magento\Framework\Escaper;
+
+/** @var DiscoverPopup $block */
+/** @var Escaper $escaper */
+$popupPosition = $block->getPopupPosition();
+$heading = $block->getHeading();
+$placeHolder = $block->getMessagePlaceholder();
+$buttonText = $block->getButtonText();
+$buttonBackgroundColor = $block->getButtonBackgroundColor();
+$sectionBackgroundColor = $block->getSectionBackgroundColor();
+$imageRecognition = $block->getImageRecognition();
+$layoutText = $block->getLayoutText();
+$layoutDescriptionText = $block->getLayoutDescriptionText();
+$exampleQueryOne = $block->getExampleQueryOne();
+$exampleQueryTwo = $block->getExampleQueryTwo();
+$exampleQueryThree = $block->getExampleQueryThree();
+$exampleQueryFour = $block->getExampleQueryFour();
+$exampleQueryFive = $block->getExampleQueryFive();
+$destinationStatus = $block->getDestinaltionStatus();
+$customCss = $block->getCustomCss();
+$dataHelper = $block->getConfigHelper();
+$showProductGrid = $block->getProductGrid();
+$popupImage = $block->getImageUrl();
+if ($dataHelper->isDiscoverWidgetEnabled() && $popupPosition):?>
+    <?= $customCss ? $escaper->escapeCss($customCss) : ""; ?>
+    <div class="discover_widget" style="display: none">
+        <div class="NewEcomAi newSmartShopDiscover <?= $escaper->escapeHtml($popupPosition);?>">
+            <div id="newcom-popup" class="popup NewEcomAi__popup">
+                <div class="popup-content NewEcomAi__popup-content js-newcom-popup-content"
+                     style="background-color: <?= $escaper->escapeHtml($sectionBackgroundColor);?>">
+                    <?php if ($popupImage):?>
+                    <div class="NewEcomAi__popup-content__column image">
+                        <div class="NewEcomAi__popup-content__image-container">
+                            <img class="NewEcomAi__popup-content__image-container__img"
+                                 src="<?=$escaper->escapeHtml($popupImage);?>" alt="Popup Image" />
+                        </div>
+                    </div>
+                    <?php endif;?>
+                    <div class="NewEcomAi__popup-content__column content">
+                        <span class="close NewEcomAi__close" id="newComclose">&times;</span>
+                        <div class="NewEcomAi__popup-content__inner js-newcom-popup-content-inner">
+                            <h2 class="NewEcomAi__popup-content__heading js-newcom-heading">
+                                <?= $heading ? $escaper->escapeHtml($heading) :
+                                    $escaper->escapeHtml(
+                                        __('AI‑Powered Shopping Assistant – What are you looking for?')
+                                    );?>
+                            </h2>
+                            <div id="NewEcomAi_popup_discover_search_form"
+                                 class="NewEcomAi__popup-content__search-box">
+                                <input class="NewEcomAi__popup-content__input js-newcom-input" rows="2"
+                                       name="NewEcomAi-question"
+                                       id="NewEcomAi-discover-question" alt=""
+                                       placeholder="<?= $placeHolder ? $escaper->escapeHtml($placeHolder) :
+                                        $escaper->escapeHtml(
+                                            __('Tell us what you are looking for, I am here to help!')
+                                                    );?>">
+                                <?php if ($imageRecognition == 1): ?>
+                                    <label class="NewEcomAi__popup-content__upload">
+                                        <svg class="NewEcomAi__popup-content__svg" xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="35" zoomAndPan="magnify"
+                                             viewBox="0 0 38.25 38.249999" height="43"
+                                             preserveAspectRatio="xMidYMid meet"
+                                             version="1.0">
+                                            <defs>
+                                                <clipPath id="29f900f661">
+                                                    <path
+                                                        d="M 1.53125 3.75 L 36.105469 3.75 L 36.105469 30.96875 L 1.53125 30.96875 Z M 1.53125 3.75 "
+                                                        clip-rule="nonzero"></path>
+                                                </clipPath>
+                                            </defs>
+                                            <g clip-path="url(#29f900f661)">
+                                                <path fill="#000000"
+                                                      d="M 32.640625 7.78125 L 27.191406 7.78125 L 24.996094 4.917969 C 24.441406 4.191406 23.570312 3.757812 22.660156 3.757812 L 14.976562 3.757812 C 14.070312 3.757812 13.195312 4.191406 12.640625 4.917969 L 10.445312 7.78125 L 9.78125 7.78125 L 9.78125 6.664062 C 9.78125 5.722656 9.023438 4.960938 8.09375 4.960938 L 6.710938 4.960938 C 5.78125 4.960938 5.023438 5.722656 5.023438 6.664062 L 5.023438 7.78125 L 4.996094 7.78125 C 3.085938 7.78125 1.53125 9.347656 1.53125 11.277344 L 1.53125 27.46875 C 1.53125 29.398438 3.085938 30.964844 4.996094 30.964844 L 32.640625 30.964844 C 34.550781 30.964844 36.105469 29.398438 36.105469 27.46875 L 36.105469 11.277344 C 36.105469 9.347656 34.550781 7.78125 32.640625 7.78125 Z M 3.050781 15.074219 L 10.109375 15.074219 C 9.8125 15.984375 9.648438 16.957031 9.648438 17.964844 C 9.648438 20.117188 10.382812 22.097656 11.605469 23.671875 L 3.050781 23.671875 Z M 11.167969 17.964844 C 11.167969 13.703125 14.601562 10.238281 18.820312 10.238281 C 23.039062 10.238281 26.46875 13.703125 26.46875 17.964844 C 26.46875 22.222656 23.039062 25.6875 18.820312 25.6875 C 14.601562 25.6875 11.167969 22.222656 11.167969 17.964844 Z M 27.988281 17.964844 C 27.988281 16.957031 27.828125 15.984375 27.53125 15.074219 L 34.585938 15.074219 L 34.585938 23.671875 L 26.03125 23.671875 C 27.257812 22.097656 27.988281 20.117188 27.988281 17.964844 Z M 6.542969 6.664062 C 6.542969 6.570312 6.617188 6.496094 6.710938 6.496094 L 8.09375 6.496094 C 8.1875 6.496094 8.261719 6.570312 8.261719 6.664062 L 8.261719 7.78125 L 6.542969 7.78125 Z M 4.996094 9.316406 L 10.816406 9.316406 C 10.832031 9.316406 10.847656 9.3125 10.859375 9.3125 C 10.890625 9.308594 10.917969 9.308594 10.945312 9.300781 C 10.96875 9.296875 10.988281 9.292969 11.011719 9.285156 C 11.035156 9.28125 11.0625 9.273438 11.085938 9.265625 C 11.109375 9.253906 11.128906 9.246094 11.152344 9.234375 C 11.171875 9.222656 11.195312 9.210938 11.214844 9.199219 C 11.238281 9.1875 11.257812 9.171875 11.277344 9.15625 C 11.296875 9.140625 11.316406 9.125 11.332031 9.109375 C 11.351562 9.089844 11.371094 9.070312 11.386719 9.050781 C 11.398438 9.039062 11.410156 9.03125 11.417969 9.015625 L 13.84375 5.855469 C 14.117188 5.496094 14.53125 5.292969 14.976562 5.292969 L 22.660156 5.292969 C 23.109375 5.292969 23.523438 5.496094 23.796875 5.855469 L 26.21875 9.015625 C 26.226562 9.027344 26.234375 9.035156 26.246094 9.042969 C 26.269531 9.070312 26.292969 9.097656 26.320312 9.121094 C 26.335938 9.136719 26.351562 9.148438 26.367188 9.160156 C 26.394531 9.183594 26.425781 9.199219 26.457031 9.21875 C 26.472656 9.226562 26.488281 9.238281 26.507812 9.246094 C 26.542969 9.261719 26.578125 9.273438 26.617188 9.285156 C 26.632812 9.289062 26.644531 9.292969 26.65625 9.296875 C 26.710938 9.308594 26.765625 9.316406 26.820312 9.316406 L 32.640625 9.316406 C 33.714844 9.316406 34.585938 10.195312 34.585938 11.277344 L 34.585938 13.542969 L 26.875 13.542969 C 25.316406 10.664062 22.289062 8.707031 18.820312 8.707031 C 15.347656 8.707031 12.320312 10.664062 10.765625 13.542969 L 3.050781 13.542969 L 3.050781 11.277344 C 3.050781 10.195312 3.925781 9.316406 4.996094 9.316406 Z M 32.640625 29.429688 L 4.996094 29.429688 C 3.925781 29.429688 3.050781 28.550781 3.050781 27.46875 L 3.050781 25.207031 L 13.113281 25.207031 C 14.683594 26.464844 16.664062 27.222656 18.820312 27.222656 C 20.972656 27.222656 22.957031 26.464844 24.523438 25.207031 L 34.585938 25.207031 L 34.585938 27.46875 C 34.585938 28.550781 33.714844 29.429688 32.640625 29.429688 Z M 32.640625 29.429688 "
+                                                      fill-opacity="1" fill-rule="nonzero"></path>
+                                            </g>
+                                            <path fill="#000000"
+                                                  d="M 25.140625 17.964844 C 25.140625 14.445312 22.304688 11.582031 18.820312 11.582031 C 15.335938 11.582031 12.5 14.445312 12.5 17.964844 C 12.5 21.480469 15.335938 24.34375 18.820312 24.34375 C 22.304688 24.34375 25.140625 21.480469 25.140625 17.964844 Z M 14.019531 17.964844 C 14.019531 15.292969 16.171875 13.117188 18.820312 13.117188 C 21.464844 13.117188 23.617188 15.292969 23.617188 17.964844 C 23.617188 20.636719 21.464844 22.808594 18.820312 22.808594 C 16.171875 22.808594 14.019531 20.636719 14.019531 17.964844 Z M 14.019531 17.964844 "
+                                                  fill-opacity="1" fill-rule="nonzero"></path>
+                                            <path fill="#000000"
+                                                  d="M 33.621094 11.417969 C 33.621094 11.566406 33.59375 11.710938 33.539062 11.851562 C 33.480469 11.992188 33.398438 12.113281 33.292969 12.222656 C 33.1875 12.328125 33.066406 12.410156 32.925781 12.46875 C 32.789062 12.527344 32.644531 12.554688 32.496094 12.554688 C 32.347656 12.554688 32.203125 12.527344 32.066406 12.46875 C 31.925781 12.410156 31.804688 12.328125 31.699219 12.222656 C 31.59375 12.113281 31.511719 11.992188 31.453125 11.851562 C 31.398438 11.710938 31.367188 11.566406 31.367188 11.417969 C 31.367188 11.265625 31.398438 11.121094 31.453125 10.980469 C 31.511719 10.839844 31.59375 10.71875 31.699219 10.613281 C 31.804688 10.503906 31.925781 10.421875 32.066406 10.367188 C 32.203125 10.308594 32.347656 10.277344 32.496094 10.277344 C 32.644531 10.277344 32.789062 10.308594 32.925781 10.367188 C 33.066406 10.421875 33.1875 10.503906 33.292969 10.613281 C 33.398438 10.71875 33.480469 10.839844 33.539062 10.980469 C 33.59375 11.121094 33.621094 11.265625 33.621094 11.417969 Z M 33.621094 11.417969 "
+                                                  fill-opacity="1" fill-rule="nonzero"></path>
+                                        </svg>
+                                        <input class="NewEcomAi__popup-content__file" type="file" id="image-upload"
+                                               name="fileInput">
+                                    </label>
+                                    <div class="NewEcomAi__popup-content__reset" id="NewEcomAi-reset-button">
+                                        <svg class="NewEcomAi__popup-content__reset__svg" fill="#000000" width="800px"
+                                             height="800px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M960 0v213.333c411.627 0 746.667 334.934 746.667 746.667S1371.627 1706.667 960 1706.667 213.333 1371.733 213.333 960c0-197.013 78.4-382.507 213.334-520.747v254.08H640V106.667H53.333V320h191.04C88.64 494.08 0 720.96 0 960c0 529.28 430.613 960 960 960s960-430.72 960-960S1489.387 0 960 0"
+                                                fill-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                <?php endif; ?>
+                                <button id="NewEcomAi-search" class="NewEcomAi__popup-content__button js-newcom-search"
+                                        style="background-color: <?= $escaper->escapeHtml($buttonBackgroundColor);?>">
+                                        <?= $buttonText ? $escaper->escapeHtml($buttonText) :
+                                        $escaper->escapeHtml(__('Discover'));?>
+                                </button>
+                            </div>
+                            <div class="NewEcomAi__product-box">
+                                <div id="stackedQuestion" class="NewEcomAi__product-box__stackedQuestion"></div>
+                                <div id="stackedList" class="NewEcomAi__product-box__stackedList"></div>
+                            </div>
+                            <div class="NewEcomAi__popup-content__image-preview js-image-preview NewEcomAi-hide-image">
+                                <img class="NewEcomAi__popup-content__image-preview__img" src="" alt="preview image">
+                                <button id="NewEcomAi-remove-preview" class="hide-image-preview">x</button>
+                            </div>
+                            <div class="NewEcomAi__popup-content__examples">
+                                <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
+                                    <span class="NewEcomAi__popup-content__examples__query__text">
+                                        <?= $exampleQueryOne ? $escaper->escapeHtml($exampleQueryOne) :
+                                            $escaper->escapeHtml(
+                                                __("I am looking for a new dress for this summer")
+                                            ); ?>
+                                    </span>
+                                </div>
+                                <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
+                                    <span class="NewEcomAi__popup-content__examples__query__text">
+                                        <?= $exampleQueryTwo ? $escaper->escapeHtml($exampleQueryTwo) :
+                                            $escaper->escapeHtml(
+                                                __("I am looking for a shirt to go with my black jean")
+                                            ); ?>
+                                    </span>
+                                </div>
+                                <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
+                                    <span class="NewEcomAi__popup-content__examples__query__text">
+                                        <?= $exampleQueryThree ? $escaper->escapeHtml($exampleQueryThree) :
+                                            $escaper->escapeHtml(
+                                                __("I am looking for a formal jacket in sustainable materials")
+                                            );?>
+                                    </span>
+                                </div>
+                                <?php if ($exampleQueryFour): ?>
+                                    <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
+                                        <span class="NewEcomAi__popup-content__examples__query__text">
+                                            <?= $escaper->escapeHtml($exampleQueryFour); ?></span>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($exampleQueryFive): ?>
+                                    <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
+                                        <span class="NewEcomAi__popup-content__examples__query__text">
+                                            <?= $escaper->escapeHtml($exampleQueryFive); ?>
+                                        </span>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="NewEcomAi__right NewEcomAi__btn" id="newcomRightBtn">
+                <div class="NewEcomAi__right__text">
+                        <?= $layoutText ? $escaper->escapeHtml($layoutText) :
+                            $escaper->escapeHtml(__('ShopSmart-AI')); ?>
+                </div>
+                <div class="NewEcomAi__right__desc">
+                    <?= $layoutDescriptionText ? $escaper->escapeHtml($layoutDescriptionText) :
+                        $escaper->escapeHtml(__('AI‑Powered Shopping Assistant')); ?>
+                </div>
+            </div>
+            <div class="NewEcomAi__left NewEcomAi__btn" id="newcomLeftBtn">
+                <div class="NewEcomAi__left__desc">
+                    <?= $layoutDescriptionText ? $escaper->escapeHtml($layoutDescriptionText) :
+                        $escaper->escapeHtml(__('AI‑Powered Shopping Assistant')); ?>
+                </div>
+                <div class="NewEcomAi__left__text">
+                    <?= $layoutText ? $escaper->escapeHtml($layoutText) :
+                        $escaper->escapeHtml(__('ShopSmart-AI')); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "discoverSearchNewEcom": {
+                    "discoverUrl": "<?= $escaper->escapeUrl($block->getDiscoverSearchUrl());?>",
+                    "productAddToCartUrl": "<?= $escaper->escapeUrl($block->productAddToCartUrl());?>",
+                    "productRemoveFromCartUrl": "<?= $escaper->escapeUrl($block->productRemoveFromCartUrl());?>",
+                    "productGridLayout": "<?= $escaper->escapeHtml($showProductGrid);?>",
+                    "discoverImageUpload": "<?= $escaper->escapeUrl($block->getDiscoverUploadImage());?>"
+                }
+            }
+        }
+    </script>
+    <script>
+        require(['jquery', 'customNewcom'], function ($, customNewcom) {
+            customNewcom();
+        });
+    </script>
+<?php endif; ?>

@@ -23,17 +23,6 @@ use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 
 class SyncManagement
 {
-    protected const MODULE_ENABLE = 'shop_smart/general/account_configuration/enable';
-    protected const SHOP_SMART_DISCOVER_WIDGET = 'shop_smart/general_newecomai_widgets/shop_smart_discover_widget';
-    protected const SHOP_SMART_DECIDE_WIDGET = 'shop_smart/general_newecomai_widgets/shop_smart_decide_widget';
-    protected const SHOP_SMART_MODE = 'shop_smart/general_account_configuration/shop_smart_mode';
-    protected const SHOP_SMART_USER_ID = 'shop_smart/general_account_configuration/user_id';
-    protected const SHOP_SMART_USER_NAME = 'shop_smart/general_account_configuration/user_name';
-    protected const SHOP_SMART_USER_PASSWORD = 'shop_smart/general_account_configuration/user_password';
-    protected const SHOP_SMART_AB_TESTING = 'shop_smart/general_account_configuration/ab_testing';
-    protected const SHOP_SMART_CATALOG_SYNC_BUTTON = 'shop_smart/general_catalog_sync/catalog_sync_button';
-    protected const SHOP_SMART_MAPPING = 'shop_smart/general/product_attribute_mapping/mapping';
-    protected const LOCALE_TIME_ZONE = 'general/locale/timezone';
     /**
      * @var string NewCommAI authentication token
      */
