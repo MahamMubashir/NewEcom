@@ -2,9 +2,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="sales_order_place_after">
-        <observer name="newEcomAI_shopSmart_order_place_after" instance="NewEcom\ShopSmart\Observer\OrderPlace" />
+        <observer name="newecom_shopsmart_order_place_after" instance="NewEcom\ShopSmart\Observer\OrderPlace" />
     </event>
     <event name="sales_model_service_quote_submit_before">
-        <observer name="newEcomAI_shopSmart_quote_submit_before" instance="NewEcom\ShopSmart\Observer\QuoteSubmitBefore" />
+        <observer name="newecom_shopsmart_quote_submit_before" instance="NewEcom\ShopSmart\Observer\QuoteSubmitBefore" />
     </event>
 </config>

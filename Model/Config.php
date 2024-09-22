@@ -6,7 +6,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use NewEcomAI\ShopSmart\Model\Log\Log;
+use NewEcom\ShopSmart\Model\Log\Log;
 use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory;
 
 class Config

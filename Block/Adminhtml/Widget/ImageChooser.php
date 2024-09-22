@@ -15,7 +15,7 @@ class ImageChooser extends Template
     /**
      * Save image controller path
      */
-    protected const UPLOAD_IMAGE_CONTROLLER_PATH = "newecomai/widgetimage/uploadimageurl";
+    protected const UPLOAD_IMAGE_CONTROLLER_PATH = "newecom/widgetimage/uploadimageurl";
 
     /**
      * @var Factory

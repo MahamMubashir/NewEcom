@@ -4,12 +4,11 @@ namespace NewEcom\ShopSmart\Block\Adminhtml\Widget;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Store\Model\StoreManagerInterface;
 use Magento\Widget\Block\BlockInterface;
 use NewEcom\ShopSmart\Helper\SyncManagement as Data;
-use NewEcom\ShopSmart\Model\Config\Source\PopupLayout;
-use Magento\Store\Model\StoreManagerInterface;
-use NewEcom\ShopSmart\Model\Log\Log;
 use NewEcom\ShopSmart\Model\Config as ConfigHelper;
+use NewEcom\ShopSmart\Model\Config\Source\PopupLayout;
 
 /**
  * Get All NewEcomAI Widget Parameters Class
@@ -19,7 +18,7 @@ class DiscoverPopup extends Template implements BlockInterface
     protected const DISCOVER_SEARCH_CONTROLLER_PATH = "newecom/recommendations/discoversearch";
     protected const PRODUCT_ADD_TO_CART_PATH = "newecom/recommendations/addtocart";
     protected const PRODUCT_REMOVE_FROM_CART_PATH = "newecom/recommendations/productremovefromcart";
-    protected const DISCOVER_UPLOAD_IMAGE_CONTROLLER_PATH = "newecomai/recommendations/discoveruploadimage";
+    protected const DISCOVER_UPLOAD_IMAGE_CONTROLLER_PATH = "newecom/recommendations/discoveruploadimage";
     protected const POPUP_CLASS = 'newcomPopup';
     protected const LEFT_SIDE_CLASS = 'newcomLeftSide';
     protected const RIGHT_SIDE_CLASS = 'newcomRightSide';
@@ -57,7 +56,7 @@ class DiscoverPopup extends Template implements BlockInterface
      * Popup Template
      * @var string
      */
-    protected $_template = "NewEcomAI_ShopSmart::widget/discover_template.phtml";
+    protected $_template = "NewEcom_ShopSmart::widget/discover_template.phtml";
 
     /**
      * @var ConfigHelper

@@ -10,6 +10,7 @@ use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\ResultInterface;
 use NewEcom\ShopSmart\Helper\SyncManagement as Data;
+use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 
 class RateQuestion extends Action
 {
@@ -35,20 +36,28 @@ class RateQuestion extends Action
     private Data $dataHelper;
 
     /**
+     * @var ConfigHelper
+     */
+    private ConfigHelper $configHelper;
+
+    /**
      * @param Context $context
      * @param Http $http
      * @param JsonFactory $resultJsonFactory
      * @param Data $dataHelper
+     * @param ConfigHelper $configHelper
      */
     public function __construct(
-        Context     $context,
-        Http        $http,
-        JsonFactory $resultJsonFactory,
-        Data        $dataHelper
+        Context      $context,
+        Http         $http,
+        JsonFactory  $resultJsonFactory,
+        Data         $dataHelper,
+        ConfigHelper $configHelper
     ) {
         $this->http = $http;
         $this->resultJsonFactory = $resultJsonFactory;
         $this->dataHelper = $dataHelper;
+        $this->configHelper = $configHelper;
         parent::__construct($context);
     }
 
@@ -62,7 +71,7 @@ class RateQuestion extends Action
         $params = $this->getRequest()->getParams();
         $score = $params['score'];
         $questionId = $params['questionId'];
-        $userId = $this->dataHelper->getShopSmartUserId();
+        $userId = $this->configHelper->getShopSmartUserId();
         if ($this->http->isAjax()) {
             $resultJson = $this->resultJsonFactory->create();
             $data = [

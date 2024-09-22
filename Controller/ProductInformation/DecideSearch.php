@@ -23,6 +23,7 @@ use NewEcom\ShopSmart\Helper\SyncManagement as Data;
 use NewEcom\ShopSmart\Model\Log\Log;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Psr\Log\LoggerInterface;
+use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 
 class DecideSearch extends Action
 {
@@ -92,6 +93,11 @@ class DecideSearch extends Action
     private LoggerInterface $logger;
 
     /**
+     * @var ConfigHelper
+     */
+    private ConfigHelper $configHelper;
+
+    /**
      * @param Context $context
      * @param Http $http
      * @param JsonFactory $resultJsonFactory
@@ -105,6 +111,7 @@ class DecideSearch extends Action
      * @param ProductUrl $productUrl
      * @param CheckoutSession $checkoutSession
      * @param LoggerInterface $logger
+     * @param ConfigHelper $configHelper
      */
     public function __construct(
         Context                             $context,
@@ -119,7 +126,8 @@ class DecideSearch extends Action
         Configurable                        $configurable,
         ProductUrl                          $productUrl,
         CheckoutSession                     $checkoutSession,
-        LoggerInterface                     $logger
+        LoggerInterface                     $logger,
+        ConfigHelper                        $configHelper
     ) {
         $this->http = $http;
         $this->resultJsonFactory = $resultJsonFactory;
@@ -133,6 +141,7 @@ class DecideSearch extends Action
         $this->productUrl = $productUrl;
         $this->checkoutSession = $checkoutSession;
         $this->logger = $logger;
+        $this->configHelper = $configHelper;
         parent::__construct($context);
     }
 
@@ -151,7 +160,7 @@ class DecideSearch extends Action
             $currentProductDescription = $params['currentProductDescription'];
             $productRecommendation = $params['productRecommendation'];
             $currentProductId = $params['currentProductId'];
-            $userId = $this->dataHelper->getShopSmartUserId();
+            $userId = $this->configHelper->getShopSmartUserId();
             if ($this->http->isAjax()) {
                 $resultJson = $this->resultJsonFactory->create();
                 if (empty($questionId)) {

@@ -22,6 +22,7 @@ use Magento\Framework\Filesystem;
 use Magento\Store\Model\StoreManagerInterface;
 use NewEcom\ShopSmart\Helper\SyncManagement as Data;
 use NewEcom\ShopSmart\Model\Log\Log;
+use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 
 class DiscoverUploadImage extends Action
 {
@@ -90,18 +91,24 @@ class DiscoverUploadImage extends Action
     private AttributeRepository $attributeRepository;
 
     /**
+     * @var ConfigHelper
+     */
+    private ConfigHelper $configHelper;
+
+    /**
      * @param Context $context
      * @param Http $http
      * @param JsonFactory $jsonFactory
      * @param UploaderFactory $uploaderFactory
      * @param Filesystem $filesystem
-     * @param Data $dataHelper
+     * @param \NewEcom\ShopSmart\Helper\SyncManagement $dataHelper
      * @param ProductRepository $productRepository
      * @param AttributeRepository $attributeRepository
      * @param StoreManagerInterface $storeManager
      * @param StockItemRepository $stockItemRepository
      * @param Configurable $configurable
      * @param ProductUrl $productUrl
+     * @param ConfigHelper $configHelper
      */
     public function __construct(
         Context               $context,
@@ -115,7 +122,8 @@ class DiscoverUploadImage extends Action
         StoreManagerInterface $storeManager,
         StockItemRepository   $stockItemRepository,
         Configurable          $configurable,
-        ProductUrl            $productUrl
+        ProductUrl            $productUrl,
+        ConfigHelper          $configHelper
     ) {
         $this->http = $http;
         $this->jsonFactory = $jsonFactory;
@@ -128,6 +136,7 @@ class DiscoverUploadImage extends Action
         $this->stockItemRepository = $stockItemRepository;
         $this->configurable = $configurable;
         $this->productUrl = $productUrl;
+        $this->configHelper = $configHelper;
         parent::__construct($context);
     }
 
@@ -143,7 +152,7 @@ class DiscoverUploadImage extends Action
         $searchKey = $params['searchKey'];
         $questionId = $params['questionId'];
         $contextId = $params['contextId'] ?? "";
-        $userId = $this->dataHelper->getShopSmartUserId();
+        $userId = $this->configHelper->getShopSmartUserId();
         try {
             if ($this->http->isAjax()) {
                 $resultJson = $this->jsonFactory->create();
@@ -257,7 +266,7 @@ class DiscoverUploadImage extends Action
                 }
             }
         } catch (\Exception $e) {
-            Log::Error($e->getMessage());
+            \NewEcom\ShopSmart\Model\Log\Log::Error($e->getMessage());
         }
     }
 

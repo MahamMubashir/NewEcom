@@ -20,6 +20,7 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use Magento\Catalog\Model\Product\Url as ProductUrl;
+use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 
 class DiscoverSearch extends Action
 {
@@ -78,11 +79,17 @@ class DiscoverSearch extends Action
      */
     private ProductUrl $productUrl;
 
+
+    /**
+     * @var ConfigHelper
+     */
+    private ConfigHelper $configHelper;
+
     /**
      * @param Context $context
      * @param Http $http
      * @param JsonFactory $resultJsonFactory
-     * @param Data $dataHelper
+     * @param NewEcom\ShopSmart\Helper\SyncManagement $dataHelper
      * @param ProductRepository $productRepository
      * @param AttributeRepository $attributeRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
@@ -90,19 +97,21 @@ class DiscoverSearch extends Action
      * @param StockItemRepository $stockItemRepository
      * @param Configurable $configurable
      * @param ProductUrl $productUrl
+     * @param ConfigHelper $configHelper
      */
     public function __construct(
-        Context                             $context,
-        Http                                $http,
-        JsonFactory                         $resultJsonFactory,
-        Data                                $dataHelper,
-        ProductRepository                   $productRepository,
-        AttributeRepository                 $attributeRepository,
-        SearchCriteriaBuilder               $searchCriteriaBuilder,
-        StoreManagerInterface               $storeManager,
-        StockItemRepository                 $stockItemRepository,
-        Configurable                        $configurable,
-        ProductUrl                          $productUrl
+        Context               $context,
+        Http                  $http,
+        JsonFactory           $resultJsonFactory,
+        Data                  $dataHelper,
+        ProductRepository     $productRepository,
+        AttributeRepository   $attributeRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        StoreManagerInterface $storeManager,
+        StockItemRepository   $stockItemRepository,
+        Configurable          $configurable,
+        ProductUrl            $productUrl,
+        ConfigHelper          $configHelper
     ) {
         $this->http = $http;
         $this->resultJsonFactory = $resultJsonFactory;
@@ -114,6 +123,7 @@ class DiscoverSearch extends Action
         $this->stockItemRepository = $stockItemRepository;
         $this->configurable = $configurable;
         $this->productUrl = $productUrl;
+        $this->configHelper = $configHelper;
         parent::__construct($context);
     }
 
@@ -130,7 +140,7 @@ class DiscoverSearch extends Action
         $searchArray = json_decode($searchKey, false);
         $questionId = $params['questionId'];
         $contextId = $params['contextId'] ?? "";
-        $userId = $this->dataHelper->getShopSmartUserId();
+        $userId = $this->configHelper->getShopSmartUserId();
         if ($this->http->isAjax()) {
             $resultJson = $this->resultJsonFactory->create();
             if (empty($questionId)) {
@@ -163,7 +173,7 @@ class DiscoverSearch extends Action
                     $productDetails = $this->loadProductDetails($product, $responseData['id']);
                     $productInfoArray[] = $productDetails;
                 }
-                  return $resultJson->setData(['response' => $responseData, 'products' =>$productInfoArray]);
+                return $resultJson->setData(['response' => $responseData, 'products' => $productInfoArray]);
             } else {
                 return $resultJson->setData(["error" => "No product found", 'feedback' => $responseData['feedback']]);
             }
@@ -189,7 +199,7 @@ class DiscoverSearch extends Action
             'size' => $this->getSizeByProductId($product),
             'price' => number_format((float)$product->getData('price'), 2),
             'imageUrl' => $this->getProductMediaUrl($product),
-            'productUrl' =>  $this->productUrl->getUrl($product),
+            'productUrl' => $this->productUrl->getUrl($product),
             'quantity' => $this->getProductQtyById($product->getId()),
             'questionId' => $questionId
         ];
@@ -236,7 +246,7 @@ class DiscoverSearch extends Action
                 }
             }
         } catch (\Exception $e) {
-            Log::Error($e->getMessage());
+            \NewEcom\ShopSmart\Model\Log\Log::Error($e->getMessage());
         }
     }
 

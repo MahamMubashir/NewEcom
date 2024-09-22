@@ -8,6 +8,7 @@ use Magento\Checkout\Model\Session as CheckoutSession;
 use NewEcom\ShopSmart\Helper\SyncManagement as Data;
 use NewEcom\ShopSmart\Model\Log\Log;
 use Magento\Quote\Api\CartRepositoryInterface;
+use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 
 /**
  * Observes the `checkout_cart_product_add_after` event.
@@ -30,18 +31,26 @@ class AddToCart implements ObserverInterface
     private CartRepositoryInterface $cartRepository;
 
     /**
+     * @var ConfigHelper
+     */
+    private ConfigHelper $configHelper;
+
+    /**
      * @param CheckoutSession $checkoutSession
-     * @param Data $helper
+     * @param \NewEcom\ShopSmart\Helper\SyncManagement $helper
      * @param CartRepositoryInterface $cartRepository
+     * @param ConfigHelper $configHelper
      */
     public function __construct(
         CheckoutSession $checkoutSession,
         Data $helper,
-        CartRepositoryInterface $cartRepository
+        CartRepositoryInterface $cartRepository,
+        ConfigHelper    $configHelper
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->helper = $helper;
         $this->cartRepository = $cartRepository;
+        $this->configHelper = $configHelper;
     }
 
     /**
@@ -61,7 +70,7 @@ class AddToCart implements ObserverInterface
         $decideQuestionId = $this->checkoutSession->getNewEcomAiDecideQuestionId();
         if ($newComProduct && $quoteId && $productId) {
             $data = [
-                "userId" => $this->helper->getShopSmartUserId(),
+                "userId" => $this->configHelper->getShopSmartUserId(),
                 "questionId" => $questionId,
                 "productId" => $productId
             ];
@@ -70,7 +79,7 @@ class AddToCart implements ObserverInterface
             $responseData = json_decode($response, true);
             if ($responseData && isset($responseData['response']['status'])
                 && $responseData['response']['status'] == 'success') {
-                Log::Info("The product has been added to cart from discover and synced successfully.");
+                \NewEcom\ShopSmart\Model\Log\Log::Info("The product has been added to cart from discover and synced successfully.");
             }
             $this->checkoutSession->setNewEcomAiAddToCart(null);
             $this->checkoutSession->setNewEcomAiQuoteId(null);
@@ -79,7 +88,7 @@ class AddToCart implements ObserverInterface
         }
         if (isset($decideAddToCart) && isset($decideQuestionId)) {
             $data = [
-                "userId" => $this->helper->getShopSmartUserId(),
+                "userId" => $this->configHelper->getShopSmartUserId(),
                 "questionId" => $decideQuestionId
             ];
             $endpoint = "api/questions/decide/addtocart";

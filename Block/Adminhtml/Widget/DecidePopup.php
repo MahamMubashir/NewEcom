@@ -2,6 +2,7 @@
 
 namespace NewEcom\ShopSmart\Block\Adminhtml\Widget;
 
+use Magento\Catalog\Block\Product\View as ProductViewBlock;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
@@ -9,13 +10,12 @@ use Magento\Widget\Block\BlockInterface;
 use NewEcom\ShopSmart\Helper\SyncManagement as Data;
 use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 use NewEcom\ShopSmart\Model\Config\Source\PopupLayout;
-use Magento\Catalog\Block\Product\View as ProductViewBlock;
 
 class DecidePopup extends Template implements BlockInterface
 {
-    protected const DECIDE_SEARCH_CONTROLLER_PATH = "newecomai/productinformation/decidesearch";
-    protected const DECIDE_RATE_QUESTION_CONTROLLER_PATH = "newecomai/productinformation/ratequestion";
-    protected const PRODUCT_ADD_TO_CART_PATH = "newecomai/recommendations/addtocart";
+    protected const DECIDE_SEARCH_CONTROLLER_PATH = "newecom/productinformation/decidesearch";
+    protected const DECIDE_RATE_QUESTION_CONTROLLER_PATH = "newecom/productinformation/ratequestion";
+    protected const PRODUCT_ADD_TO_CART_PATH = "newecom/recommendations/addtocart";
     protected const POPUP_CLASS = 'newcomPopup';
     protected const LEFT_SIDE_CLASS = 'newcomLeftSide';
     protected const RIGHT_SIDE_CLASS = 'newcomRightSide';

@@ -8,6 +8,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use NewEcom\ShopSmart\Helper\SyncManagement as Data;
 use NewEcom\ShopSmart\Model\Log\Log;
 use Magento\Checkout\Model\Session as CheckoutSession;
+use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 
 class OrderPlace implements ObserverInterface
 {
@@ -17,7 +18,7 @@ class OrderPlace implements ObserverInterface
     protected OrderRepositoryInterface $orderRepository;
 
     /**
-     * @var Data
+     * @var \NewEcom\ShopSmart\Helper\SyncManagement
      */
     protected Data $helper;
 
@@ -27,18 +28,26 @@ class OrderPlace implements ObserverInterface
     protected CheckoutSession $checkoutSession;
 
     /**
+     * @var ConfigHelper
+     */
+    private ConfigHelper $configHelper;
+
+    /**
      * @param OrderRepositoryInterface $orderRepository
      * @param Data $helper
      * @param CheckoutSession $checkoutSession
+     * @param ConfigHelper $configHelper
      */
     public function __construct(
         OrderRepositoryInterface $orderRepository,
         Data $helper,
-        CheckoutSession $checkoutSession
+        CheckoutSession $checkoutSession,
+        ConfigHelper $configHelper
     ) {
         $this->orderRepository = $orderRepository;
         $this->helper = $helper;
         $this->checkoutSession = $checkoutSession;
+        $this->configHelper = $configHelper;
     }
 
     /**
@@ -51,7 +60,7 @@ class OrderPlace implements ObserverInterface
     {
         try {
             $order = $observer->getEvent()->getOrder();
-            $userId = $this->helper->getShopSmartUserId();
+            $userId = $this->configHelper->getShopSmartUserId();
             $orderId = $order->getIncrementId();
             $orderDate = date('Y-m-d');
             $orderItems = [];
@@ -114,7 +123,7 @@ class OrderPlace implements ObserverInterface
             $endpoint = "api/order/add";
             $response = $this->helper->sendApiRequest($endpoint, "POST", true, json_encode($data));
             $responseData = json_decode($response, true);
-            Log::Info('Order details sent successfully: ' . json_encode($responseData));
+            \NewEcom\ShopSmart\Model\Log\Log::Info('Order details sent successfully: ' . json_encode($responseData));
         } catch (\Exception $e) {
             Log::Info('Error sending order details: ' . $e->getMessage());
         }

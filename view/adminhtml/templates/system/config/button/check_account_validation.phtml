@@ -1,0 +1,92 @@
+<?php
+
+use NewEcom\ShopSmart\Block\System\Config\Button\CheckAccountValidation;
+use Magento\Framework\Escaper;
+
+/** @var CheckAccountValidation $block */
+/** @var Escaper $escaper */
+
+
+?>
+<div class="pp-buttons-container" id="account_validate">
+    <button id="account_validation_button">
+        <span><span><span><?= $escaper->escapeHtml($block->getButtonLabel()); ?></span></span></span>
+    </button>
+    <div id="overlay" class="success_msg" style="display: none">
+        <div id="popup">
+            <header class="modal-header">
+                <h1 id="modal-title-0" class="modal-title" data-role="title">
+                    <?= $escaper->escapeHtml(__('Success!')); ?>
+                </h1>
+                <button class="action-close" data-role="closeBtn" type="button">
+                    <span><?= $escaper->escapeHtml(__('Close')); ?></span>
+                </button>
+            </header>
+            <div id="modal-content-0" class="modal-content" data-role="content">
+                <div class="popup-modal" style="">
+                    <p><?= $escaper->escapeHtml(__('Account Validation Successfully.'));?></p>
+                    <div class="modal_close_btn">
+                        <button class="close_popup"><?= $escaper->escapeHtml(__('Ok'));?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay" class="error_msg" style="display: none">
+        <div id="popup">
+            <header class="modal-header">
+                <h1 id="modal-title-0" class="modal-title" data-role="title"><?= $escaper->escapeHtml(__('Error!')); ?>
+                </h1>
+                <button class="action-close" data-role="closeBtn" type="button">
+                    <span><?= $escaper->escapeHtml(__('Close')); ?></span>
+                </button>
+            </header>
+            <div id="modal-content-0" class="modal-content" data-role="content">
+                <div class="popup-modal" style="">
+                    <p> <?= $escaper->escapeHtml(__('Account Validation Failed.')); ?> </p>
+                    <p class="custom_error"></p>
+                    <div class="modal_close_btn">
+                        <button class="close_popup"><?= $escaper->escapeHtml(__('Ok')); ?></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        require(["jquery"], function ($) {
+            $(document).ready(function ($) {
+                $("#account_validation_button").on("click", function (e) {
+                    e.preventDefault();
+                    $('.custom_error').text('')
+                    $.ajax({
+                        url: "<?= $escaper->escapeUrl($block->getUrl('newecom/config/ecomaccountvalidation')); ?>",
+                        data: {form_key: window.FORM_KEY},
+                        showLoader: true,
+                        type: "POST",
+                        success: function (response, status) {
+                            if (response.status) {
+                                $('#account_validate .success_msg').show();
+                            } else {
+                                $('.custom_error').text(response.message)
+                                $('#account_validate .error_msg').show();
+                            }
+                        },
+                        error: function (error, status) {
+                            $('#account_validate .error_msg').show();
+                        }
+                    })
+                })
+                $('#account_validate .modal-header .action-close, #account_validate .modal_close_btn').click(
+                    function (e) {
+                    $('#account_validate .success_msg').hide();
+                    $('#account_validate .error_msg').hide();
+                    e.preventDefault()
+                });
+            });
+        });
+    })();
+</script>

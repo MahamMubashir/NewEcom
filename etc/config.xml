@@ -11,9 +11,6 @@
                     <user_password>0.uq05bxxmgx</user_password>
                     <ab_testing>0</ab_testing>
             </general_account_configuration>
-            <general_catalog_sync>
-                <catalog_sync_button>0</catalog_sync_button>
-            </general_catalog_sync>
             <general_newecomai_widgets>
                 <shop_smart_discover_widget>0</shop_smart_discover_widget>
                 <shop_smart_decide_widget>0</shop_smart_decide_widget>
