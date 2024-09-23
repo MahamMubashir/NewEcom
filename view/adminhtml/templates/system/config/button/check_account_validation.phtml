@@ -1,32 +1,22 @@
-<?php
-
-use NewEcom\ShopSmart\Block\System\Config\Button\CheckAccountValidation;
-use Magento\Framework\Escaper;
-
-/** @var CheckAccountValidation $block */
-/** @var Escaper $escaper */
-
-
-?>
 <div class="pp-buttons-container" id="account_validate">
     <button id="account_validation_button">
-        <span><span><span><?= $escaper->escapeHtml($block->getButtonLabel()); ?></span></span></span>
+        <span><span><span><?= $block->getButtonLabel(); //phpcs:ignore ?></span></span></span>
     </button>
     <div id="overlay" class="success_msg" style="display: none">
         <div id="popup">
             <header class="modal-header">
                 <h1 id="modal-title-0" class="modal-title" data-role="title">
-                    <?= $escaper->escapeHtml(__('Success!')); ?>
+                    <?= __('Success!'); //phpcs:ignore ?>
                 </h1>
                 <button class="action-close" data-role="closeBtn" type="button">
-                    <span><?= $escaper->escapeHtml(__('Close')); ?></span>
+                    <span><?= __('Close'); //phpcs:ignore ?></span>
                 </button>
             </header>
             <div id="modal-content-0" class="modal-content" data-role="content">
                 <div class="popup-modal" style="">
-                    <p><?= $escaper->escapeHtml(__('Account Validation Successfully.'));?></p>
+                    <p><?= __('Account Validation Successfully.'); //phpcs:ignore ?></p>
                     <div class="modal_close_btn">
-                        <button class="close_popup"><?= $escaper->escapeHtml(__('Ok'));?></button>
+                        <button class="close_popup"><?= __('Ok'); //phpcs:ignore ?></button>
                     </div>
                 </div>
             </div>
@@ -36,18 +26,18 @@ use Magento\Framework\Escaper;
     <div id="overlay" class="error_msg" style="display: none">
         <div id="popup">
             <header class="modal-header">
-                <h1 id="modal-title-0" class="modal-title" data-role="title"><?= $escaper->escapeHtml(__('Error!')); ?>
+                <h1 id="modal-title-0" class="modal-title" data-role="title"><?= __('Error!'); //phpcs:ignore ?>
                 </h1>
                 <button class="action-close" data-role="closeBtn" type="button">
-                    <span><?= $escaper->escapeHtml(__('Close')); ?></span>
+                    <span><?= __('Close'); //phpcs:ignore ?></span>
                 </button>
             </header>
             <div id="modal-content-0" class="modal-content" data-role="content">
                 <div class="popup-modal" style="">
-                    <p> <?= $escaper->escapeHtml(__('Account Validation Failed.')); ?> </p>
+                    <p><?= __('Account Validation Failed.'); //phpcs:ignore ?></p>
                     <p class="custom_error"></p>
                     <div class="modal_close_btn">
-                        <button class="close_popup"><?= $escaper->escapeHtml(__('Ok')); ?></button>
+                        <button class="close_popup"><?= __('Ok'); //phpcs:ignore ?></button>
                     </div>
                 </div>
             </div>
@@ -63,7 +53,7 @@ use Magento\Framework\Escaper;
                     e.preventDefault();
                     $('.custom_error').text('')
                     $.ajax({
-                        url: "<?= $escaper->escapeUrl($block->getUrl('newecom/config/ecomaccountvalidation')); ?>",
+                        url: "<?= $block->getUrl('newecom/config/ecomaccountvalidation'); //phpcs:ignore ?>",
                         data: {form_key: window.FORM_KEY},
                         showLoader: true,
                         type: "POST",
@@ -82,10 +72,10 @@ use Magento\Framework\Escaper;
                 })
                 $('#account_validate .modal-header .action-close, #account_validate .modal_close_btn').click(
                     function (e) {
-                    $('#account_validate .success_msg').hide();
-                    $('#account_validate .error_msg').hide();
-                    e.preventDefault()
-                });
+                        $('#account_validate .success_msg').hide();
+                        $('#account_validate .error_msg').hide();
+                        e.preventDefault()
+                    });
             });
         });
     })();

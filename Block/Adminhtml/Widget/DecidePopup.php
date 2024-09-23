@@ -4,8 +4,11 @@ namespace NewEcom\ShopSmart\Block\Adminhtml\Widget;
 
 use Magento\Catalog\Block\Product\View as ProductViewBlock;
 use Magento\Catalog\Model\Product;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Store\Model\ScopeInterface;
+use Magento\Store\Model\StoreManagerInterface;
 use Magento\Widget\Block\BlockInterface;
 use NewEcom\ShopSmart\Helper\SyncManagement as Data;
 use NewEcom\ShopSmart\Model\Config as ConfigHelper;
@@ -13,6 +16,7 @@ use NewEcom\ShopSmart\Model\Config\Source\PopupLayout;
 
 class DecidePopup extends Template implements BlockInterface
 {
+    protected const SHOP_SMART_DECIDE_WIDGET = 'shop_smart/general_newecomai_widgets/shop_smart_decide_widget';
     protected const DECIDE_SEARCH_CONTROLLER_PATH = "newecom/productinformation/decidesearch";
     protected const DECIDE_RATE_QUESTION_CONTROLLER_PATH = "newecom/productinformation/ratequestion";
     protected const PRODUCT_ADD_TO_CART_PATH = "newecom/recommendations/addtocart";
@@ -62,10 +66,22 @@ class DecidePopup extends Template implements BlockInterface
     private ConfigHelper $configHelper;
 
     /**
+     * @var ScopeConfigInterface
+     */
+    private ScopeConfigInterface $scopeConfigInterface;
+
+    /**
+     * @var StoreManagerInterface
+     */
+    private StoreManagerInterface $storeManager;
+
+    /**
      * @param Context $context
      * @param Data $helperData
      * @param ProductViewBlock $productViewBlock
      * @param ConfigHelper $configHelper
+     * @param StoreManagerInterface $storeManager
+     * @param ScopeConfigInterface $scopeConfigInterface
      * @param array $data
      */
     public function __construct(
@@ -73,13 +89,33 @@ class DecidePopup extends Template implements BlockInterface
         Data             $helperData,
         ProductViewBlock $productViewBlock,
         ConfigHelper     $configHelper,
+        StoreManagerInterface $storeManager,
+        ScopeConfigInterface    $scopeConfigInterface,
         array            $data = []
     ) {
         $this->productViewBlock = $productViewBlock;
         $this->helperData = $helperData;
         $this->data = $data;
-        parent::__construct($context);
         $this->configHelper = $configHelper;
+        $this->scopeConfigInterface = $scopeConfigInterface;
+        $this->storeManager = $storeManager;
+
+        parent::__construct($context);
+    }
+
+    /**
+     * Get value of Decide widget enable configuration
+     *
+     * @return false|mixed
+     */
+    public function isDecideWidgetEnabled()
+    {
+        $value = $this->scopeConfigInterface->getValue(
+            self::SHOP_SMART_DECIDE_WIDGET,
+            ScopeInterface::SCOPE_STORE,
+            $this->storeManager->getStore()->getId()
+        );
+        return $value ?: false;
     }
 
     /**

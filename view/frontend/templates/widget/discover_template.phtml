@@ -1,10 +1,4 @@
 <?php
-
-use Magento\Framework\Escaper;
-use NewEcom\ShopSmart\Block\Adminhtml\Widget\DiscoverPopup;
-
-/** @var DiscoverPopup $block */
-/** @var Escaper $escaper */
 $popupPosition = $block->getPopupPosition();
 $heading = $block->getHeading();
 $placeHolder = $block->getMessagePlaceholder();
@@ -21,43 +15,34 @@ $exampleQueryFour = $block->getExampleQueryFour();
 $exampleQueryFive = $block->getExampleQueryFive();
 $destinationStatus = $block->getDestinaltionStatus();
 $customCss = $block->getCustomCss();
-$dataHelper = $block->getConfigHelper();
 $showProductGrid = $block->getProductGrid();
 $popupImage = $block->getImageUrl();
-if ($dataHelper->isDiscoverWidgetEnabled() && $popupPosition):?>
-    <?= $customCss ? $escaper->escapeCss($customCss) : ""; ?>
+if ($block->isDiscoverWidgetEnabled() && $popupPosition):?>
+    <?= $customCss ? $customCss : ""; ?>
     <div class="discover_widget" style="display: none">
-        <div class="NewEcomAi newSmartShopDiscover <?= $escaper->escapeHtml($popupPosition);?>">
+        <div class="NewEcomAi newSmartShopDiscover <?= $popupPosition ?>">
             <div id="newcom-popup" class="popup NewEcomAi__popup">
                 <div class="popup-content NewEcomAi__popup-content js-newcom-popup-content"
-                     style="background-color: <?= $escaper->escapeHtml($sectionBackgroundColor);?>">
+                     style="background-color: <?= $sectionBackgroundColor; ?>">
                     <?php if ($popupImage):?>
-                    <div class="NewEcomAi__popup-content__column image">
-                        <div class="NewEcomAi__popup-content__image-container">
-                            <img class="NewEcomAi__popup-content__image-container__img"
-                                 src="<?=$escaper->escapeHtml($popupImage);?>" alt="Popup Image" />
+                        <div class="NewEcomAi__popup-content__column image">
+                            <div class="NewEcomAi__popup-content__image-container">
+                                <img class="NewEcomAi__popup-content__image-container__img" src="<?= $popupImage;?>" alt="Popup Image" />
+                            </div>
                         </div>
-                    </div>
                     <?php endif;?>
                     <div class="NewEcomAi__popup-content__column content">
                         <span class="close NewEcomAi__close" id="newComclose">&times;</span>
                         <div class="NewEcomAi__popup-content__inner js-newcom-popup-content-inner">
                             <h2 class="NewEcomAi__popup-content__heading js-newcom-heading">
-                                <?= $heading ? $escaper->escapeHtml($heading) :
-                                    $escaper->escapeHtml(
-                                        __('AI‑Powered Shopping Assistant – What are you looking for?')
-                                    );?>
+                                <?= $heading ? $heading : __('AI‑Powered Shopping Assistant – What are you looking for?') ?>
                             </h2>
-                            <div id="NewEcomAi_popup_discover_search_form"
-                                 class="NewEcomAi__popup-content__search-box">
+                            <div id="NewEcomAi_popup_discover_search_form" class="NewEcomAi__popup-content__search-box">
                                 <input class="NewEcomAi__popup-content__input js-newcom-input" rows="2"
                                        name="NewEcomAi-question"
                                        id="NewEcomAi-discover-question" alt=""
-                                       placeholder="<?= $placeHolder ? $escaper->escapeHtml($placeHolder) :
-                                        $escaper->escapeHtml(
-                                            __('Tell us what you are looking for, I am here to help!')
-                                                    );?>">
-                                <?php if ($imageRecognition == 1): ?>
+                                       placeholder="<?= $placeHolder ? $placeHolder : __('Tell us what you are looking for, I am here to help!'); ?>">
+                                <?php if ($imageRecognition == 1) : ?>
                                     <label class="NewEcomAi__popup-content__upload">
                                         <svg class="NewEcomAi__popup-content__svg" xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink" width="35" zoomAndPan="magnify"
@@ -96,10 +81,7 @@ if ($dataHelper->isDiscoverWidgetEnabled() && $popupPosition):?>
                                     </div>
                                 <?php endif; ?>
                                 <button id="NewEcomAi-search" class="NewEcomAi__popup-content__button js-newcom-search"
-                                        style="background-color: <?= $escaper->escapeHtml($buttonBackgroundColor);?>">
-                                        <?= $buttonText ? $escaper->escapeHtml($buttonText) :
-                                        $escaper->escapeHtml(__('Discover'));?>
-                                </button>
+                                        style="background-color: <?= $buttonBackgroundColor; ?>"><?= $buttonText ? $buttonText : __('Discover'); ?></button>
                             </div>
                             <div class="NewEcomAi__product-box">
                                 <div id="stackedQuestion" class="NewEcomAi__product-box__stackedQuestion"></div>
@@ -111,40 +93,27 @@ if ($dataHelper->isDiscoverWidgetEnabled() && $popupPosition):?>
                             </div>
                             <div class="NewEcomAi__popup-content__examples">
                                 <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
-                                    <span class="NewEcomAi__popup-content__examples__query__text">
-                                        <?= $exampleQueryOne ? $escaper->escapeHtml($exampleQueryOne) :
-                                            $escaper->escapeHtml(
-                                                __("I am looking for a new dress for this summer")
-                                            ); ?>
-                                    </span>
+                                    <span
+                                        class="NewEcomAi__popup-content__examples__query__text"><?= $exampleQueryOne ? $exampleQueryOne : __("I am looking for a new dress for this summer"); ?></span>
                                 </div>
                                 <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
-                                    <span class="NewEcomAi__popup-content__examples__query__text">
-                                        <?= $exampleQueryTwo ? $escaper->escapeHtml($exampleQueryTwo) :
-                                            $escaper->escapeHtml(
-                                                __("I am looking for a shirt to go with my black jean")
-                                            ); ?>
-                                    </span>
+                                    <span
+                                        class="NewEcomAi__popup-content__examples__query__text"><?= $exampleQueryTwo ? $exampleQueryTwo : __("I am looking for a shirt to go with my black jean"); ?></span>
                                 </div>
                                 <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
-                                    <span class="NewEcomAi__popup-content__examples__query__text">
-                                        <?= $exampleQueryThree ? $escaper->escapeHtml($exampleQueryThree) :
-                                            $escaper->escapeHtml(
-                                                __("I am looking for a formal jacket in sustainable materials")
-                                            );?>
-                                    </span>
+                                    <span
+                                        class="NewEcomAi__popup-content__examples__query__text"><?= $exampleQueryThree ? $exampleQueryThree : __("I am looking for a formal jacket in sustainable materials"); ?></span>
                                 </div>
                                 <?php if ($exampleQueryFour): ?>
                                     <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
-                                        <span class="NewEcomAi__popup-content__examples__query__text">
-                                            <?= $escaper->escapeHtml($exampleQueryFour); ?></span>
+                                        <span
+                                            class="NewEcomAi__popup-content__examples__query__text"><?= $exampleQueryFour; ?></span>
                                     </div>
                                 <?php endif; ?>
                                 <?php if ($exampleQueryFive): ?>
                                     <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
-                                        <span class="NewEcomAi__popup-content__examples__query__text">
-                                            <?= $escaper->escapeHtml($exampleQueryFive); ?>
-                                        </span>
+                                        <span
+                                            class="NewEcomAi__popup-content__examples__query__text"><?= $exampleQueryFive; ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -154,22 +123,18 @@ if ($dataHelper->isDiscoverWidgetEnabled() && $popupPosition):?>
             </div>
             <div class="NewEcomAi__right NewEcomAi__btn" id="newcomRightBtn">
                 <div class="NewEcomAi__right__text">
-                        <?= $layoutText ? $escaper->escapeHtml($layoutText) :
-                            $escaper->escapeHtml(__('ShopSmart-AI')); ?>
+                    <?= $layoutText ? $layoutText : __('ShopSmart-AI'); ?>
                 </div>
                 <div class="NewEcomAi__right__desc">
-                    <?= $layoutDescriptionText ? $escaper->escapeHtml($layoutDescriptionText) :
-                        $escaper->escapeHtml(__('AI‑Powered Shopping Assistant')); ?>
+                    <?= $layoutDescriptionText ? $layoutDescriptionText : __('AI‑Powered Shopping Assistant'); ?>
                 </div>
             </div>
             <div class="NewEcomAi__left NewEcomAi__btn" id="newcomLeftBtn">
                 <div class="NewEcomAi__left__desc">
-                    <?= $layoutDescriptionText ? $escaper->escapeHtml($layoutDescriptionText) :
-                        $escaper->escapeHtml(__('AI‑Powered Shopping Assistant')); ?>
+                    <?= $layoutDescriptionText ? $layoutDescriptionText : __('AI‑Powered Shopping Assistant'); ?>
                 </div>
                 <div class="NewEcomAi__left__text">
-                    <?= $layoutText ? $escaper->escapeHtml($layoutText) :
-                        $escaper->escapeHtml(__('ShopSmart-AI')); ?>
+                    <?= $layoutText ? $layoutText : __('ShopSmart-AI'); ?>
                 </div>
             </div>
         </div>
@@ -178,11 +143,11 @@ if ($dataHelper->isDiscoverWidgetEnabled() && $popupPosition):?>
         {
             "*": {
                 "discoverSearchNewEcom": {
-                    "discoverUrl": "<?= $escaper->escapeUrl($block->getDiscoverSearchUrl());?>",
-                    "productAddToCartUrl": "<?= $escaper->escapeUrl($block->productAddToCartUrl());?>",
-                    "productRemoveFromCartUrl": "<?= $escaper->escapeUrl($block->productRemoveFromCartUrl());?>",
-                    "productGridLayout": "<?= $escaper->escapeHtml($showProductGrid);?>",
-                    "discoverImageUpload": "<?= $escaper->escapeUrl($block->getDiscoverUploadImage());?>"
+                    "discoverUrl": "<?= $block->getDiscoverSearchUrl(); ?>",
+                    "productAddToCartUrl": "<?= $block->productAddToCartUrl(); ?>",
+                    "productRemoveFromCartUrl": "<?= $block->productRemoveFromCartUrl(); ?>",
+                    "productGridLayout": "<?= $showProductGrid; ?>",
+                    "discoverImageUpload": "<?= $block->getDiscoverUploadImage() ?>"
                 }
             }
         }

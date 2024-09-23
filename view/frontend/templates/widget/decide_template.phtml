@@ -1,11 +1,4 @@
 <?php
-
-use Magento\Framework\Escaper;
-use NewEcom\ShopSmart\Block\Adminhtml\Widget\DecidePopup;
-
-/** @var DecidePopup $block */
-/** @var Escaper $escaper */
-
 $popupPosition = $block->getPopupPosition();
 $heading = $block->getHeading();
 $placeHolder = $block->getMessagePlaceholder();
@@ -22,24 +15,23 @@ $exampleQueryFour = $block->getExampleQueryFour();
 $exampleQueryFive = $block->getExampleQueryFive();
 $destinationStatus = $block->getDestinaltionStatus();
 $customCss = $block->getCustomCss();
-$dataHelper = $block->getConfigHelper();
 $showProductGrid = $block->getProductGrid();
 $currentProduct = $block->getCurrentProduct();
 $currentProductDetail = preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($currentProduct->getDescription())));
 $popupImage = $block->getImageUrl();
 $productRecommendation = $block->getProductRecommendation();
-if ($dataHelper->isDecideWidgetEnabled() && $popupPosition):?>
-    <?= $customCss ? $escaper->escapeCss($customCss) : ""; ?>
+if ($block->isDecideWidgetEnabled() && $popupPosition): ?>
+    <?= $customCss ? $customCss : ""; ?>
     <div class="decide_widget" style="display: none">
-        <div class="NewEcomAi newSmartShopDecide <?= $escaper->escapeHtml($popupPosition); ?>">
+        <div class="NewEcomAi newSmartShopDecide <?= $popupPosition; ?>">
             <div id="newcom-popup" class="popup NewEcomAi__popup">
                 <div class="popup-content NewEcomAi__popup-content js-newcom-popup-content"
-                     style="background-color: <?= $escaper->escapeHtml($sectionBackgroundColor); ?>">
+                     style="background-color: <?= $sectionBackgroundColor; ?>">
                     <?php if ($popupImage): ?>
                         <div class="NewEcomAi__popup-content__column image">
                             <div class="NewEcomAi__popup-content__image-container">
                                 <img class="NewEcomAi__popup-content__image-container__img"
-                                     src="<?= $escaper->escapeHtml($popupImage); ?>"
+                                     src="<?= $popupImage; ?>"
                                      alt="Popup Image"/>
                             </div>
                         </div>
@@ -48,54 +40,53 @@ if ($dataHelper->isDecideWidgetEnabled() && $popupPosition):?>
                         <span class="close NewEcomAi__close" id="newComclose">&times;</span>
                         <div class="NewEcomAi__popup-content__inner">
                             <h2 class="NewEcomAi__popup-content__heading">
-                                <?= $heading ? $escaper->escapeHtml($heading) :
-                                    $escaper->escapeHtml(__('Ask me anything you want
-                                    about this product in Natural Language.')); ?>
+                                <?= $heading ? $heading :
+                                    __('Ask me anything you want about this product in Natural Language.'); ?>
                             </h2>
                             <div class="NewEcomAi__popup-content__search-box">
                                 <input class="NewEcomAi__popup-content__input" rows="2" name="NewEcomAi-question"
                                        id="NewEcomAi-question" alt=""
-                                       placeholder="<?= $placeHolder ? $escaper->escapeHtml($placeHolder) :
-                                           $escaper->escapeHtml(__('Can I wear this product for a formal diner?')); ?>">
+                                       placeholder="<?= $placeHolder ? $placeHolder :
+                                           __('Can I wear this product for a formal dinner?'); ?>">
                                 <button id="NewEcomAi-search" class="NewEcomAi__popup-content__button"
-                                        style="background-color: <?= $escaper->escapeHtml($buttonBackgroundColor);?>">
-                                    <?= $buttonText ? $escaper->escapeHtml($buttonText) :
-                                        $escaper->escapeHtml(__('Tell me'));?>
+                                        style="background-color: <?= $buttonBackgroundColor; ?>">
+                                    <?= $buttonText ? $buttonText :
+                                        __('Tell me'); ?>
                                 </button>
                             </div>
 
                             <div class="NewEcomAi__popup-content__examples">
                                 <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
                                     <span class="NewEcomAi__popup-content__examples__query__text">
-                                        <?= $exampleQueryOne ? $escaper->escapeHtml($exampleQueryOne) :
-                                            $escaper->escapeHtml(__("What are the materials?")); ?>
+                                        <?= $exampleQueryOne ? $exampleQueryOne :
+                                            __("What are the materials?"); ?>
                                     </span>
                                 </div>
                                 <?php if ($exampleQueryTwo): ?>
                                     <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
                                         <span class="NewEcomAi__popup-content__examples__query__text">
-                                            <?= $escaper->escapeHtml($exampleQueryTwo); ?>
+                                            <?= $exampleQueryTwo; ?>
                                         </span>
                                     </div>
                                 <?php endif; ?>
                                 <?php if ($exampleQueryThree): ?>
                                     <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
                                         <span class="NewEcomAi__popup-content__examples__query__text">
-                                            <?= $escaper->escapeHtml($exampleQueryThree); ?>
+                                            <?= $exampleQueryThree; ?>
                                         </span>
                                     </div>
                                 <?php endif; ?>
                                 <?php if ($exampleQueryFour): ?>
                                     <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
                                         <span class="NewEcomAi__popup-content__examples__query__text">
-                                            <?= $escaper->escapeHtml($exampleQueryFour); ?>
+                                            <?= $exampleQueryFour; ?>
                                         </span>
                                     </div>
                                 <?php endif; ?>
                                 <?php if ($exampleQueryFive): ?>
                                     <div class="NewEcomAi__popup-content__examples__query newcomClickableText">
                                         <span class="NewEcomAi__popup-content__examples__query__text">
-                                            <?= $escaper->escapeHtml($exampleQueryFive); ?>
+                                            <?= $exampleQueryFive; ?>
                                         </span>
                                     </div>
                                 <?php endif; ?>
@@ -107,22 +98,22 @@ if ($dataHelper->isDecideWidgetEnabled() && $popupPosition):?>
             </div>
             <div class="NewEcomAi__right NewEcomAi__btn" id="newcomRightBtn">
                 <div class="NewEcomAi__right__text">
-                    <?= $layoutText ? $escaper->escapeHtml($layoutText) :
-                        $escaper->escapeHtml(__('Shop Smart')); ?>
+                    <?= $layoutText ? $layoutText :
+                        __('Shop Smart'); ?>
                 </div>
                 <div class="NewEcomAi__right__desc">
-                    <?= $layoutDescriptionText ? $escaper->escapeHtml($layoutDescriptionText) :
-                        $escaper->escapeHtml(__('AI Powered Shopping Assistant')); ?>
+                    <?= $layoutDescriptionText ? $layoutDescriptionText :
+                        __('AI Powered Shopping Assistant'); ?>
                 </div>
             </div>
             <div class="NewEcomAi__left NewEcomAi__btn" id="newcomLeftBtn">
                 <div class="NewEcomAi__left__desc">
-                    <?= $layoutDescriptionText ? $escaper->escapeHtml($layoutDescriptionText) :
-                        $escaper->escapeHtml(__('AI Powered Shopping Assistant')); ?>
+                    <?= $layoutDescriptionText ? $layoutDescriptionText :
+                        __('AI Powered Shopping Assistant'); ?>
                 </div>
                 <div class="NewEcomAi__left__text">
-                    <?= $layoutText ? $escaper->escapeHtml($layoutText) :
-                        $escaper->escapeHtml(__('Shop Smart')); ?>
+                    <?= $layoutText ? $layoutText :
+                        __('Shop Smart'); ?>
                 </div>
             </div>
         </div>
@@ -131,14 +122,14 @@ if ($dataHelper->isDecideWidgetEnabled() && $popupPosition):?>
         {
             "*": {
                 "decideSearchNewEcom": {
-                    "decideSearchUrl": "<?= $escaper->escapeUrl($block->getDecideSearchUrl());?>",
-                    "decideSearchQuestionRateUrl": "<?= $escaper->escapeUrl($block->getDecideSearchQuestionRateUrl());?>",
-                    "productGridLayout": "<?= $escaper->escapeHtml($showProductGrid);?>",
-                    "currentProductTitle": "<?= $escaper->escapeHtml($currentProduct->getName());?>",
-                    "currentProductDescription": "<?= $escaper->escapeHtml(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($currentProduct->getDescription()))));?>",
-                    "productRecommendation": "<?= $escaper->escapeHtml($productRecommendation);?>",
-                    "currentProductId": "<?= $escaper->escapeHtml($currentProduct->getId());?>",
-                    "productAddToCartUrl": "<?= $escaper->escapeUrl($block->productAddToCartUrl());?>"
+                    "decideSearchUrl": "<?= $block->getDecideSearchUrl(); ?>",
+                    "decideSearchQuestionRateUrl": "<?= $block->getDecideSearchQuestionRateUrl(); ?>",
+                    "productGridLayout": "<?= $showProductGrid; ?>",
+                    "currentProductTitle": "<?= $currentProduct->getName(); ?>",
+                    "currentProductDescription": "<?= preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($currentProduct->getDescription()))); ?>",
+                    "productRecommendation": "<?= $productRecommendation; ?>",
+                    "currentProductId": "<?= $currentProduct->getId(); ?>",
+                    "productAddToCartUrl": "<?= $block->productAddToCartUrl(); ?>"
                 }
             }
         }

@@ -4,17 +4,20 @@ namespace NewEcom\ShopSmart\Block\Adminhtml\Widget;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Widget\Block\BlockInterface;
 use NewEcom\ShopSmart\Helper\SyncManagement as Data;
 use NewEcom\ShopSmart\Model\Config as ConfigHelper;
 use NewEcom\ShopSmart\Model\Config\Source\PopupLayout;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
  * Get All NewEcomAI Widget Parameters Class
  */
 class DiscoverPopup extends Template implements BlockInterface
 {
+    protected const SHOP_SMART_DISCOVER_WIDGET = 'shop_smart/general_newecomai_widgets/shop_smart_discover_widget';
     protected const DISCOVER_SEARCH_CONTROLLER_PATH = "newecom/recommendations/discoversearch";
     protected const PRODUCT_ADD_TO_CART_PATH = "newecom/recommendations/addtocart";
     protected const PRODUCT_REMOVE_FROM_CART_PATH = "newecom/recommendations/productremovefromcart";
@@ -64,10 +67,16 @@ class DiscoverPopup extends Template implements BlockInterface
     private ConfigHelper $configHelper;
 
     /**
+     * @var ScopeConfigInterface
+     */
+    private ScopeConfigInterface $scopeConfigInterface;
+
+    /**
      * @param Context $context
      * @param Data $helperData
      * @param StoreManagerInterface $storeManager
      * @param ConfigHelper $configHelper
+     * @param ScopeConfigInterface $scopeConfigInterface
      * @param array $data
      */
     public function __construct(
@@ -75,13 +84,30 @@ class DiscoverPopup extends Template implements BlockInterface
         Data             $helperData,
         StoreManagerInterface $storeManager,
         ConfigHelper           $configHelper,
+        ScopeConfigInterface    $scopeConfigInterface,
         array            $data = []
     ) {
         $this->helperData = $helperData;
         $this->data = $data;
         $this->storeManager = $storeManager;
         $this->configHelper = $configHelper;
+        $this->scopeConfigInterface = $scopeConfigInterface;
         parent::__construct($context);
+    }
+
+    /**
+     * Get value of Discover widget enable configuration
+     *
+     * @return mixed|void
+     */
+    public function isDiscoverWidgetEnabled()
+    {
+        $value = $this->scopeConfigInterface->getValue(
+            self::SHOP_SMART_DISCOVER_WIDGET,
+            ScopeInterface::SCOPE_STORE,
+            $this->storeManager->getStore()->getId()
+        );
+        return $value ?: false;
     }
 
     /**
