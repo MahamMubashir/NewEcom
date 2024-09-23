@@ -56,7 +56,7 @@ class DiscoverPopup extends Template implements BlockInterface
      * Popup Template
      * @var string
      */
-    protected $_template = "NewEcom_ShopSmart::widget/discover_template.phtml";
+    protected $_template = "widget/discover_template.phtml";
 
     /**
      * @var ConfigHelper

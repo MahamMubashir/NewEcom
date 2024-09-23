@@ -8,7 +8,7 @@ use Magento\Framework\Data\Form\Element\AbstractElement;
 class CheckAccountValidation extends Field
 {
     protected const ACCOUNT_VALIDATION_BUTTON =
-        'NewEcom_ShopSmart::system/config/button/check_account_validation.phtml';
+        'system/config/button/check_account_validation.phtml';
 
     /**
      * Set template to itself

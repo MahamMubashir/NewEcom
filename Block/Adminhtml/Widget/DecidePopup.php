@@ -44,7 +44,7 @@ class DecidePopup extends Template implements BlockInterface
      * Decide Template
      * @var string
      */
-    protected $_template = "NewEcom_ShopSmart::widget/decide_template.phtml";
+    protected $_template = "widget/decide_template.phtml";
 
     /**
      * @var Data
