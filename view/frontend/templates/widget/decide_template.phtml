@@ -1,25 +1,27 @@
 <?php
-$popupPosition = $block->getPopupPosition();
-$heading = $block->getHeading();
-$placeHolder = $block->getMessagePlaceholder();
-$buttonText = $block->getButtonText();
-$buttonBackgroundColor = $block->getButtonBackgroundColor();
-$sectionBackgroundColor = $block->getSectionBackgroundColor();
-$imageRecognition = $block->getImageRecognition();
-$layoutText = $block->getLayoutText();
-$layoutDescriptionText = $block->getLayoutDescriptionText();
-$exampleQueryOne = $block->getExampleQueryOne();
-$exampleQueryTwo = $block->getExampleQueryTwo();
-$exampleQueryThree = $block->getExampleQueryThree();
-$exampleQueryFour = $block->getExampleQueryFour();
-$exampleQueryFive = $block->getExampleQueryFive();
-$destinationStatus = $block->getDestinaltionStatus();
-$customCss = $block->getCustomCss();
-$showProductGrid = $block->getProductGrid();
-$currentProduct = $block->getCurrentProduct();
-$currentProductDetail = preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($currentProduct->getDescription())));
-$popupImage = $block->getImageUrl();
-$productRecommendation = $block->getProductRecommendation();
+if ($block->isDecideWidgetEnabled()){
+    $popupPosition = $block->getPopupPosition();
+    $heading = $block->getHeading();
+    $placeHolder = $block->getMessagePlaceholder();
+    $buttonText = $block->getButtonText();
+    $buttonBackgroundColor = $block->getButtonBackgroundColor();
+    $sectionBackgroundColor = $block->getSectionBackgroundColor();
+    $imageRecognition = $block->getImageRecognition();
+    $layoutText = $block->getLayoutText();
+    $layoutDescriptionText = $block->getLayoutDescriptionText();
+    $exampleQueryOne = $block->getExampleQueryOne();
+    $exampleQueryTwo = $block->getExampleQueryTwo();
+    $exampleQueryThree = $block->getExampleQueryThree();
+    $exampleQueryFour = $block->getExampleQueryFour();
+    $exampleQueryFive = $block->getExampleQueryFive();
+    $destinationStatus = $block->getDestinaltionStatus();
+    $customCss = $block->getCustomCss();
+    $showProductGrid = $block->getProductGrid();
+    $currentProduct = $block->getCurrentProduct();
+    $currentProductDetail = preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($currentProduct->getDescription())));
+    $popupImage = $block->getImageUrl();
+    $productRecommendation = $block->getProductRecommendation();
+}
 if ($block->isDecideWidgetEnabled() && $popupPosition): ?>
     <?= $customCss ? $customCss : ""; ?>
     <div class="decide_widget" style="display: none">

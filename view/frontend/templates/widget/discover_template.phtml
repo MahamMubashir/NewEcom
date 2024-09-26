@@ -1,22 +1,24 @@
 <?php
-$popupPosition = $block->getPopupPosition();
-$heading = $block->getHeading();
-$placeHolder = $block->getMessagePlaceholder();
-$buttonText = $block->getButtonText();
-$buttonBackgroundColor = $block->getButtonBackgroundColor();
-$sectionBackgroundColor = $block->getSectionBackgroundColor();
-$imageRecognition = $block->getImageRecognition();
-$layoutText = $block->getLayoutText();
-$layoutDescriptionText = $block->getLayoutDescriptionText();
-$exampleQueryOne = $block->getExampleQueryOne();
-$exampleQueryTwo = $block->getExampleQueryTwo();
-$exampleQueryThree = $block->getExampleQueryThree();
-$exampleQueryFour = $block->getExampleQueryFour();
-$exampleQueryFive = $block->getExampleQueryFive();
-$destinationStatus = $block->getDestinaltionStatus();
-$customCss = $block->getCustomCss();
-$showProductGrid = $block->getProductGrid();
-$popupImage = $block->getImageUrl();
+if ($block->isDiscoverWidgetEnabled()){
+    $popupPosition = $block->getPopupPosition();
+    $heading = $block->getHeading();
+    $placeHolder = $block->getMessagePlaceholder();
+    $buttonText = $block->getButtonText();
+    $buttonBackgroundColor = $block->getButtonBackgroundColor();
+    $sectionBackgroundColor = $block->getSectionBackgroundColor();
+    $imageRecognition = $block->getImageRecognition();
+    $layoutText = $block->getLayoutText();
+    $layoutDescriptionText = $block->getLayoutDescriptionText();
+    $exampleQueryOne = $block->getExampleQueryOne();
+    $exampleQueryTwo = $block->getExampleQueryTwo();
+    $exampleQueryThree = $block->getExampleQueryThree();
+    $exampleQueryFour = $block->getExampleQueryFour();
+    $exampleQueryFive = $block->getExampleQueryFive();
+    $destinationStatus = $block->getDestinaltionStatus();
+    $customCss = $block->getCustomCss();
+    $showProductGrid = $block->getProductGrid();
+    $popupImage = $block->getImageUrl();
+}
 if ($block->isDiscoverWidgetEnabled() && $popupPosition):?>
     <?= $customCss ? $customCss : ""; ?>
     <div class="discover_widget" style="display: none">
